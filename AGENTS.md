@@ -460,3 +460,7 @@ runs / the endpoint / the volumes. Tests: `tests/test_skill_scripts.py`.
   researcher can follow. Numbers carry their provenance (checkpoint, suite + partition, n, report path); the decision rule is written before the result. A list
   of files changed is the diff again, not a description. Length follows novelty: one sentence for a one-line fix, headings for a new loss or serving path.
   The title becomes the squash commit subject. The `kev-pr-description` skill has the reference PRs and a weak/strong pair.
+
+
+## Reward Hacking finetuning experiment
+Read MASTER-PLAN.md before starting work. It defines this repository’s project goals, phase order, decisions, and acceptance gates. Implement work phase by phase and record each handoff. This repository’s final product is our judge-manipulation detector. Inherited Kev documentation remains a technical reference; its broader model-family roadmap does not define this project’s scope.
