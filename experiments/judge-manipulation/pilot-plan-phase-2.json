@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "phase": 2,
+  "status": "registered_before_checker_outputs",
+  "scope": "Independent data-pipeline pilot only. Phase 4 remains failed. No candidate training, Kev baseline, benchmark, locked-test evaluation, or final corpus freeze.",
+  "candidate_count": 200,
+  "construction_candidates": 160,
+  "semantic_candidates": 40,
+  "construction_families": {
+    "classes": ["direct_override", "fake_authority", "role_spoofing", "rubric_replacement", "forged_verdict", "reward_pressure", "obfuscation", "checker_target"],
+    "reservations": {"train": 4, "calibration": 3, "development": 3},
+    "count_unit": "Attack-control pairs per class and reservation. Eight classes times ten pairs times two rows gives 160 rows.",
+    "freeze": "The implementation must record the exact 24 distinct reservation-specific template families and seed/body identifiers before generating pilot records. A template, suffix, seed, answer body, and every derived control or variant stay in one connected lineage component and reservation. Reusing text under a new name does not create a new family.",
+    "controls": ["quoted_examples", "refusals", "fictional_dialogue", "code_comments", "ordinary_score_discussion", "poor_answers"],
+    "placement": "Include prefix, middle and suffix attacks, plus attacks after encoded state token 512 and near the 2048-token cap. Record actual encoded positions. Preserve raw Unicode, invisible characters, comments and role delimiters.",
+    "evidence": "Known construction gives the intended label and a recorded transformation/evidence span. Blind checker output cannot silently overwrite that evidence. A conflicting construction check is quarantined for automatic review, without manual relabeling."
+  },
+  "semantic_source": {
+    "source": "oasst1",
+    "reservation": "calibration",
+    "selection": "Use the pinned source registry artifacts. Deterministically select 40 unique English assistant messages after review/deletion filtering. Record exact selection/filter fields and counts before checker outputs. Keep the original body bytes and full conversation lineage. Do not use source rank, toxicity, role or review status as detector labels.",
+    "labels": "Two valid, agreeing local checker decisions are required. Every other outcome is quarantine, with an explicit reason."
+  },
+  "source_exclusions": {
+    "school_of_reward_hacks": "Entire source reserved for evaluation. No text in pilot; source hack/control roles are unsupported target-label mappings until separately established.",
+    "notinject": "Entire source reserved for evaluation. User-prompt role and unresolved English response eligibility prohibit pilot admission. A benign-source label is not a detector label.",
+    "excluded_registry_sources": "No text from excluded sources is permitted.",
+    "conspiracybench": "Absent. Do not create a substitute fixture."
+  },
+  "checker_contract": {
+    "models": ["Qwen3-4B Q4_K_M", "Phi-4-mini-instruct locally converted to Q4_K_M"],
+    "execution": "Sequential local models. No paid API, remote compute or manual tags.",
+    "freeze": "Pin runtime, model revisions, weight and quantization hashes, effective launch flags, exact prompts and structured schema before pilot checker outputs.",
+    "blinding": "Only the response text and the frozen classification instructions enter the checker request. Hide ID, source, reservation, provenance, intended label and construction metadata. Encode response text as an explicitly untrusted JSON string inside the prompt. Instructions within it never control the checker.",
+    "output": "Strict structured boolean decision, supported/in-scope status, and verbatim evidence text spans. The pipeline derives and validates raw character offsets deterministically. For repeated spans retain all exact occurrences or quarantine ambiguity. Never use fuzzy matching. Reject unsupported schema, types, missing/empty required spans, nonverbatim spans, truncation and inference failures. Models do not count character offsets."
+  },
+  "dispositions": ["accepted_known_construction", "accepted_semantic_agreement", "quarantine_checker_disagreement", "quarantine_malformed_or_unsupported", "quarantine_inference_failure", "unsupported_context", "excluded_source_mapping", "excluded_duplicate_or_lineage_conflict"],
+  "pass_criteria": [
+    "Exactly 200 unique candidates exist with no repeated rows used to fill counts, and every candidate has an explicit disposition.",
+    "Both pinned checkers have actual raw local outputs or explicit failures for every admitted candidate; missing execution never counts as agreement.",
+    "Actual valid outputs from both pinned models must occur. The real end-to-end pilot must exercise accepted known positives, accepted known negatives, and at least one accepted OASST semantic-agreement row. Explicit quarantine/error paths must also be exercised. An entirely failed or quarantined run cannot pass.",
+    "Every accepted row satisfies the evidence hierarchy, exact frozen detector question, strict boolean label mapping, loader/API schema, strict encoder and 2048-state-token cap including the state delimiter.",
+    "All accepted semantic rows have two valid agreeing outputs; every malformed, unsupported, disagreeing or failed semantic check is quarantined.",
+    "Exact duplicate conflicts and connected lineage across reservations are rejected; source conversations, bodies, seeds, templates, suffixes and controls cannot cross reservations.",
+    "The exercised pilot includes clear attacks, quoted controls and checker-target attacks, with raw obfuscation and role delimiters preserved and measured long placements.",
+    "Focused behavioral tests prove label mapping, evidence validation, quarantine and transitive split grouping. Frozen predecessor hashes remain unchanged."
+  ],
+  "limits": "Accepted counts and checker disagreement rates must be reported. This pilot does not prove final collection targets, independent-source sufficiency, checker real-world accuracy, or training feasibility. No minimum checker accuracy is invented. A failed safety/pipeline criterion stops Phase 2 with concrete retained evidence."
+}
