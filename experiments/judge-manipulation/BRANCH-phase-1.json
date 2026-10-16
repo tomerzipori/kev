@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-15",
+  "predecessor_branch": "codex/judge-manipulation-phase-0-register",
+  "current_branch": "codex/judge-manipulation-phase-1-research",
+  "shared_head": "925e9e900ed7c04e40d38549eac32a0d974c57d8",
+  "remote_branch_existed_before_creation": false,
+  "commit_created": false,
+  "pushed": false,
+  "uncommitted_files_retained": true,
+  "frozen_file_hashes": {
+    "MASTER-PLAN.md": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+    "experiments/judge-manipulation/git-state.json": "3e5dc239275fcc4abc58f1b4837da6152cf57929cce1cbd16e5b4dbbbe9a1554",
+    "experiments/judge-manipulation/git-workflow.md": "d46dfc3dc1bcb88f2f8a5646f1d06419678eb5ea3553078be4e8d8dd9f81d494"
+  },
+  "isolation_note": "This branch and its predecessor point at the same uncommitted HEAD because no commit was authorized. Both names share the current worktree state; the branch transition does not isolate files. File hashes and phase handoffs mark the boundary."
+}
