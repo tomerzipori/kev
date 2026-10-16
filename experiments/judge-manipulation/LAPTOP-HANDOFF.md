@@ -2,7 +2,19 @@
 
 The shared continuation branch is `codex/judge-manipulation-progress` in [tomerzipori/kev](https://github.com/tomerzipori/kev/tree/codex/judge-manipulation-progress). Phase 0 registration is complete at `bb08c11`. Phase 1 source research is complete at `c05fcc3`. Compatibility commit `a2e15a1` preserves the exact `MASTER-PLAN.md` bytes and frozen artifact hashes across Windows checkouts. The repository's `main` branch remains at `925e9e9` and is unchanged.
 
-Phase 4 Windows feasibility started early, alongside source research as the plan allows. It is still in progress. Phase 2's 200-row pilot and Phase 3's frozen suite build have not passed. The current remote continuation branch does not yet include the ongoing Phase 4 scripts or a measured result. The root will update this handoff when the Phase 4 result is ready.
+Phase 4 Windows feasibility started early, alongside source research as the plan allows. This source checkpoint adds the Phase 4 scripts and pinned model metadata. Python compilation passed for the five Phase 4 Python scripts, and `bash -n` passed for the WSL setup script. CPU fast checks are running. GPU feasibility has not been measured. Phase 2's 200-row pilot and Phase 3's frozen suite build have not passed.
+
+On WSL, set up the locked environment and run the short feasibility check with new output and report directories:
+
+```sh
+bash experiments/judge-manipulation/setup_phase4_wsl.sh
+RUN_ID="phase4-$(date -u +%Y%m%dT%H%M%SZ)"
+uv run --locked --python 3.13.16 python experiments/judge-manipulation/run_phase4_smoke.py \
+  --out "runs/judge-manipulation-phase4/$RUN_ID" \
+  --report-dir "experiments/judge-manipulation/reports/$RUN_ID"
+```
+
+Use a new `RUN_ID` for each attempt. The script refuses to overwrite an existing output directory or report files. Review generated reports and logs before committing them.
 
 To start from a fresh laptop checkout, run:
 

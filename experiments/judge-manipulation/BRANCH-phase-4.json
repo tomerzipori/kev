@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-15",
+  "predecessor_branch": "codex/judge-manipulation-phase-1-research",
+  "current_branch": "codex/judge-manipulation-phase-4-windows-feasibility",
+  "shared_head": "925e9e900ed7c04e40d38549eac32a0d974c57d8",
+  "branch_created_from_predecessor": true,
+  "remote_branch_existed_before_creation": false,
+  "commit_created": false,
+  "pushed": false,
+  "staged": false,
+  "transition_rationale": "MASTER-PLAN.md explicitly allows Windows feasibility work alongside source research. This is the early Phase 4 feasibility gate, not a claim that Phase 2 pilot or Phase 3 build-and-freeze is complete.",
+  "isolation_note": "No commit was authorized. The predecessor and current branch point to the same HEAD and share the uncommitted worktree. This branch name does not isolate files; recorded hashes define the handoff boundary.",
+  "frozen_files": {
+    "MASTER-PLAN.md": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+    "experiments/judge-manipulation/audit-attacks.json": "8788e7f94865fab559def10b6ac6ea6de005214a7b2e6d7418193e611058384b",
+    "experiments/judge-manipulation/audit-shortlist.json": "be94552acafcebc9b2d3c7c342549619b320b52eb8315aa93fa201bf81b3d4a0",
+    "experiments/judge-manipulation/BRANCH-phase-1.json": "967bfcb94416cdf4cc13f1bda5a6975177a0c896684a86ac7a530fb44aa1a264",
+    "experiments/judge-manipulation/git-state.json": "3e5dc239275fcc4abc58f1b4837da6152cf57929cce1cbd16e5b4dbbbe9a1554",
+    "experiments/judge-manipulation/git-workflow.md": "d46dfc3dc1bcb88f2f8a5646f1d06419678eb5ea3553078be4e8d8dd9f81d494",
+    "experiments/judge-manipulation/HANDOFF-phase-0.md": "8882d3628db351447a08b3efb3d8b190607668fb1066d935aae3ad8c2cef0a6a",
+    "experiments/judge-manipulation/HANDOFF-phase-1.md": "95cb3b59f15a1894717503a11e850275db2f028ba288e110f7525fbb71965c26",
+    "experiments/judge-manipulation/PHASE-1-research.md": "49efff3913135c29ecb95acc8114d965a7495da22d3d9905ad0b334bf38a1806",
+    "experiments/judge-manipulation/README.md": "96000fac817769ce3fc45bf5ba0430d828b0bca423efbd44d2b846110f3c1c65",
+    "experiments/judge-manipulation/registration.json": "e9cdf442f451ac5344aa7d188db285ccb241b4e7ffb0be032efd3041dbe28c76",
+    "experiments/judge-manipulation/source-registry.json": "2818e4f68a8adc352d71112b195eb5be7b389b47796ce3c6e63f80d0efb19ec7"
+  },
+  "registry_audits": [
+    {
+      "path": "experiments/judge-manipulation/audit-shortlist.json",
+      "sha256": "be94552acafcebc9b2d3c7c342549619b320b52eb8315aa93fa201bf81b3d4a0"
+    },
+    {
+      "path": "experiments/judge-manipulation/audit-attacks.json",
+      "sha256": "8788e7f94865fab559def10b6ac6ea6de005214a7b2e6d7418193e611058384b"
+    }
+  ]
+}
