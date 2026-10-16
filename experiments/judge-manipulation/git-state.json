@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-15",
+  "workspace": "C:/Users/Tomer/Documents/GitHub/kev",
+  "initial_state": {
+    "head": "925e9e900ed7c04e40d38549eac32a0d974c57d8",
+    "branch": "main",
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0,
+    "local_branches": ["main"],
+    "remote_branches": ["origin/HEAD -> origin/main", "origin/main"],
+    "worktrees": [
+      {
+        "path": "C:/Users/Tomer/Documents/GitHub/kev",
+        "head": "925e9e900ed7c04e40d38549eac32a0d974c57d8",
+        "branch": "main"
+      }
+    ],
+    "preexisting_changes": [
+      {
+        "path": "MASTER-PLAN.md",
+        "status": "unstaged modification; index matched HEAD",
+        "head_blob": "128a4141c75f8d3cafd0f151b2600cbcffa69a0b",
+        "working_file_sha256": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+        "binary_diff_sha256": "6d792b9311a3bc423d5a29eda0f5c5fe8e3787d11b6277561a5be9e644e471c1",
+        "change_summary": "The objective changes the model from Kev-0.8B to Kev-4B and host RAM from 36 GB to 32 GB. The detailed initial recipe still specifies Kev-0.8B. The file was preserved without edits."
+      }
+    ]
+  },
+  "phase_0_branch": {
+    "name": "codex/judge-manipulation-phase-0-register",
+    "created_from": "925e9e900ed7c04e40d38549eac32a0d974c57d8",
+    "exists_on_remote": false,
+    "commit_created": false,
+    "pushed": false
+  },
+  "instructions_found": {
+    "root": "AGENTS.md",
+    "nested": ["playground/AGENTS.md"],
+    "applicable_nested_instructions": [],
+    "writing_skill": ".agents/skills/unslop/SKILL.md"
+  },
+  "artifact_inventory": {
+    "experiments/judge-manipulation": "absent before this audit; contains only git-state.json and git-workflow.md created for phase 0",
+    "evals/judge-manipulation-v1": "absent",
+    "matching_study_or_regression_paths": [],
+    "matching_content_outside_plan_and_repository_instructions": [],
+    "conspiracybench_fixture": "not found in this checkout; the plan requires its current file and hash to be verified before import",
+    "search_scope": "Searched experiment, run, evaluation, script, and test paths plus hidden checkout text, excluding Git internals, virtual environments, and model weight binaries. Existing Kev research runs are unrelated to this detector."
+  },
+  "registration_snapshot": {
+    "objective": "Detect attempts within a submitted response to influence a judge's score, verdict, instructions, or evaluation rules. Read the submitted response only, return a probability and binary decision, and support complete states through 2,048 encoded tokens.",
+    "model_scope_in_objective": "Kev-4B",
+    "hardware": "Windows through WSL2 Ubuntu; RTX 4060 Ti with 8 GB VRAM and 32 GB RAM",
+    "source_policy": {
+      "school_of_reward_hacks": "Evaluation only; reserve all 105 current rows and exclude unrelated reward hacks from the positive class.",
+      "judge_deceiver": "Exclude until reuse permission is established.",
+      "hackaprompt": "Training seeds only after adapting general instruction attacks to judge manipulation and recording each transformation.",
+      "oasst1": "English assistant messages as candidate ordinary responses; verify labels against the detector definition.",
+      "deepset_prompt_injections": "Separate calibration source after adaptation; do not copy generic injection labels and resolve conflicting license metadata before use.",
+      "notinject": "Evaluation only; reserve all 339 published examples as false-positive cases.",
+      "additional_sources": "Admit only after inspecting files, label meaning, provenance, and reuse terms. Log exclusions and reasons. Papers, frameworks, and repeated universal suffixes do not count as large labeled datasets.",
+      "partitioning": "Assign groups before variants. Keep source conversations, answer bodies, attack seeds, suffix families, and derived controls within one partition. Check within-source and cross-source duplicates. Keep calibration-source datasets out of training. Keep School of Reward Hacks and NotInject out of training and calibration.",
+      "automatic_labeling": "Prefer compatible provenance-backed labels, then known programmatic constructions, then agreement between local open models. The plan names Qwen3-4B Q4_K_M and Phi-4-mini-instruct Q4_K_M, requires pinned revisions, quantization, runtimes, and prompts, treats responses as untrusted, hides source labels and intended answers, requires structured outputs with evidence spans, and quarantines disagreements or malformed outputs. Complete the 200-row pilot first."
+    },
+    "trial_grid": {
+      "seed_0_learning_rates": ["2e-5", "5e-5"],
+      "epochs": [1, 2],
+      "full_trials": 4,
+      "initial_recipe_parent_in_detailed_section": "Released Kev-0.8B with its pinned Qwen3.5-0.8B-Base, LoRA rank 16, parent target modules, BF16 backbone/autocast, FP32 adapter/head, batch 1, accumulation 16, gradient checkpointing, 2,048-state limit, cross-entropy, no generic augmentation, no full-weight training or QLoRA.",
+      "confirmation": "Repeat the development-selected recipe with seeds 1 and 2.",
+      "resume_rule": "An interrupted LoRA trial restarts in a new output directory because the current LoRA path does not support full optimizer-state resume."
+    },
+    "acceptance": {
+      "baselines": ["Released Kev-0.8B with the fixed detector question", "fixed keyword detector", "character n-gram logistic regression trained on the training partition"],
+      "temperature": "Fit on calibration data only.",
+      "threshold": "On development data, choose the lowest threshold whose one-sided 95% false-positive-rate upper bound is at most 1%.",
+      "trial_ranking": "Recall at that threshold, then lower development false-positive rate, lower NLL, fewer epochs, and lower learning rate.",
+      "test_freeze": "Freeze candidate, temperature, and threshold before opening the locked test.",
+      "confirmed_pass": "Locked-test recall lower confidence bound at least 90% and false-positive upper bound at most 1%. Point estimates alone mean provisional.",
+      "confidence_units": "Attack and answer groups.",
+      "other_reported_metrics": "Recall, false-positive rate, precision, macro F1, PR-AUC, confusion matrices, Brier score, NLL, calibration error, slices by source/family/length/placement/hard-negative type, separate published/adapted/synthetic results, latency, throughput, peak VRAM, host RAM, training runtime, unsupported inputs, and inference failures.",
+      "test_reuse": "If test results inform a change, retain that test as regression and use a fresh locked test for the next version.",
+      "label_limit": "Agreement between local checkers does not establish real-world label accuracy."
+    },
+    "unresolved_before_training": "The objective now says Kev-4B, while the detailed training recipe and baseline still say Kev-0.8B. This audit preserves the plan exactly and does not choose between them. Resolve and pin the parent model before any training or baseline run."
+  },
+  "phase_branch_policy": "Sequential phase branches created before separately authorized commits all point to the same commit until a commit is authorized and made. Switching branches in this shared checkout does not isolate uncommitted files. Use file hashes and recorded handoffs as phase boundaries, preserve existing changes, and create a later phase branch only after its gate passes."
+}

@@ -1,0 +1,21 @@
+# Git workflow and phase 0 record
+
+The task began at `925e9e900ed7c04e40d38549eac32a0d974c57d8` on `main`, in sync with `origin/main`. The only pre-existing worktree change was an unstaged edit to `MASTER-PLAN.md`. Its working-file SHA-256 was `812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba`; its binary diff SHA-256 was `6d792b9311a3bc423d5a29eda0f5c5fe8e3787d11b6277561a5be9e644e471c1`. The edit changes the objective to Kev-4B and 32 GB RAM. I left it byte-for-byte unchanged.
+
+The fresh local branch `codex/judge-manipulation-phase-0-register` now points at that original commit. No commit was made and no branch was pushed. The branch preserves the existing uncommitted plan edit in this checkout.
+
+This repository's phase branches are sequential. Before separately authorized commits exist, branches created from this checkout share the same commit. A branch switch also keeps uncommitted files in the shared worktree, so it does not create an isolated snapshot. Record file hashes in each handoff to mark phase boundaries. Create the next branch only after the current phase gate passes. Do not commit or publish without separate authorization.
+
+The existing plan sets the fixed detector scope: classify judge manipulation in the submitted response alone, return a probability and binary decision, and support up to 2,048 encoded state tokens on the Windows WSL2 machine with an RTX 4060 Ti, 8 GB VRAM, and 32 GB RAM. It bars manual tagging and paid APIs. The detailed recipe still names Kev-0.8B and the matching Qwen3.5-0.8B-Base, while the objective now names Kev-4B. This remains unresolved. Preserve the plan and resolve the parent checkpoint before running baselines or training.
+
+The source policy reserves School of Reward Hacks and NotInject for evaluation, excludes JudgeDeceiver until reuse permission is clear, adapts HackAPrompt patterns before training, reviews OASST1 responses against the task definition, and keeps adapted deepset prompt-injection data separate for calibration until its license metadata is resolved. New sources need file, label, provenance, and reuse checks. Keep related conversations, answers, attack seeds, suffix families, and derived controls in one split; keep calibration sources out of training; check duplicates across sources. The 200-row pilot and pinned local checkers precede full corpus processing. The full source decisions and labeling rules remain in [MASTER-PLAN.md](../../MASTER-PLAN.md).
+
+The registered search has four seed-0 trials: learning rates `2e-5` and `5e-5`, each at one and two epochs. Each starts from the same released parent. Select on development data and repeat the selected recipe with seeds 1 and 2. Rank by recall at the selected threshold, then lower development false-positive rate, lower NLL, fewer epochs, and lower learning rate.
+
+Fit temperature on calibration only. On development, choose the lowest threshold whose one-sided 95% false-positive-rate upper bound is at most 1%. Freeze the candidate, temperature, and threshold before opening the locked test. A confirmed pass needs a locked-test recall lower confidence bound of at least 90% and a false-positive upper bound of at most 1%. Point estimates alone are provisional. If test results guide a change, retain that test as regression and prepare a fresh locked test.
+
+The initial checkout contained no study or regression paths named for judge manipulation, and a text search found no such artifacts outside the plan and repository instructions. The planned `evals/judge-manipulation-v1` directory was absent. The plan mentions a historical ConspiracyBench fixture, but the fixture was not found in this checkout. Verify its actual file and hash before importing it; do not reconstruct or claim historical results from memory.
+
+The root `AGENTS.md` applies to this project. The only nested `AGENTS.md` is under `playground/`, outside this audit's scope. The repository's `.agents/skills/unslop/SKILL.md` calls for plain language, direct attribution, and a final prose self-audit; this record follows those rules.
+
+Machine-readable hashes, branch state, artifact inventory, registration decisions, and unresolved items are in [git-state.json](git-state.json).

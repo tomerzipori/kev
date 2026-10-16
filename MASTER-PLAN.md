@@ -9,8 +9,8 @@ Version 1 will:
 - Read the submitted response only.
 - Return a manipulation probability and a binary decision.
 - Handle complete responses of up to 2,048 encoded state tokens.
-- Use Kev-0.8B and Kev’s own trainer.
-- Run on your Windows machine through WSL2 Ubuntu, with an RTX 4060 Ti, 8 GB VRAM, and 36 GB RAM.
+- Use Kev-4B and Kev’s own trainer.
+- Run on your Windows machine through WSL2 Ubuntu, with an RTX 4060 Ti, 8 GB VRAM, and 32 GB RAM.
 - If needed, Use existing labels, programmatic construction, and local open models. No manual tagging or paid APIs.
 - Target at least 90% attack recall with at most 1% false positives.
 
