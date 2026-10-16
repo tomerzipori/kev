@@ -253,6 +253,12 @@ def write_reports(out_dir, report_dir, report):
         "",
         "This is a bounded hardware probe using repeated copies of one tokenizer-verified synthetic row. It does not build a corpus or establish detector quality.",
         "",
+        "## Execution outcome and memory gate",
+        "",
+        "```json",
+        json.dumps({"execution_outcome": report.get("execution_outcome"), "memory_gate": report.get("memory_gate")}, indent=2, sort_keys=True),
+        "```",
+        "",
         "## Measurements",
         "",
         "```json",
@@ -286,6 +292,67 @@ def resource_summary(out_dir):
         "wsl_mem_available_min_bytes": min(available) if available else None,
         "monitored_process_peak_rss_bytes": max(peak_rss or rss) if (peak_rss or rss) else None,
         "monitor_phases": sorted({row.get("phase") for row in gpu_rows if row.get("phase")}),
+    }
+
+
+def memory_budget_assessment(report, out_dir):
+    """Keep successful execution separate from the registered physical-memory gate."""
+    environment = report.get("environment_before_training") or report.get("environment_before_download") or {}
+    probe = environment.get("cuda_probe", {})
+    physical_bytes = probe.get("cuda_total_memory_bytes")
+    if not isinstance(physical_bytes, int) or physical_bytes <= 0:
+        return {
+            "status": "not_assessed",
+            "reason": "CUDA physical memory capacity was not recorded",
+            "physical_device_bytes": physical_bytes,
+            "budget_bytes": None,
+            "peak_allocated_bytes": None,
+            "peak_sources": [],
+        }
+
+    budget_bytes = min(8 * 1024**3, physical_bytes)
+    evidence = []
+
+    def collect(value, path):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                item_path = f"{path}.{key}"
+                if key in {"peak_allocated_bytes", "peak_allocated_bytes_so_far", "reload_peak_allocated_bytes"}:
+                    if isinstance(item, int) and item >= 0:
+                        evidence.append({"source": item_path, "bytes": item})
+                collect(item, item_path)
+        elif isinstance(value, list):
+            for index, item in enumerate(value):
+                collect(item, f"{path}[{index}]")
+
+    proof_dir = out_dir / "proof"
+    # Include embedded evidence so this assessment can be replayed from the
+    # retained report even when ignored runtime proof files are unavailable.
+    collect(report, "report")
+    for name in ("in_training_model.json", "training-failure-memory.json", "save-reload-verification.json"):
+        path = proof_dir / name
+        if path.is_file():
+            collect(json.loads(path.read_text(encoding="utf-8")), str(path))
+
+    peak = max((item["bytes"] for item in evidence), default=None)
+    if peak is None:
+        status = "not_assessed"
+        reason = "no CUDA peak-allocation evidence was recorded"
+    elif peak > budget_bytes:
+        status = "failed_memory_budget"
+        reason = "peak CUDA allocation exceeded min(8 GiB, physical device memory)"
+    else:
+        status = "within_limit"
+        reason = None
+    return {
+        "status": status,
+        "reason": reason,
+        "budget_bytes": budget_bytes,
+        "budget_rule": "min(8 * 1024^3, actual CUDA physical device memory)",
+        "physical_device_bytes": physical_bytes,
+        "peak_allocated_bytes": peak,
+        "peak_sources": evidence,
+        "exceeded_by_bytes": max(0, peak - budget_bytes) if peak is not None else None,
     }
 
 
@@ -459,7 +526,27 @@ def main():
                 reload_log_text = reload_log.read_text(encoding="utf-8", errors="replace")
                 report["classification"] = reload_oom_classification(reload_log_text, reload_stage)
                 report["save_reload_error_tail"] = reload_log_text.splitlines()[-35:]
-        report["status"] = "passed" if report["classification"] == "passed" else "failed"
+        report["execution_outcome"] = {
+            "status": "passed" if report["classification"] == "passed" else "failed",
+            "classification": report["classification"],
+            "training_return_code": report.get("training_return_code"),
+            "save_reload_return_code": report.get("save_reload_return_code"),
+            "training_terminal_stage": (report.get("training_stage_at_exit") or {}).get("stage"),
+        }
+        report["memory_gate"] = memory_budget_assessment(report, out_dir)
+        if report["memory_gate"]["status"] == "failed_memory_budget":
+            report["status"] = "failed"
+            report["classification"] = "memory_budget_exceeded"
+        elif (report["execution_outcome"]["status"] == "passed"
+              and report["memory_gate"]["status"] == "within_limit"):
+            report["status"] = "passed"
+        elif (report["execution_outcome"]["status"] == "passed"
+              and report["memory_gate"]["status"] == "not_assessed"):
+            report["status"] = "failed"
+            report["classification"] = "memory_gate_not_assessed"
+        else:
+            report["status"] = "failed"
+        report["hardware_feasibility_status"] = report["memory_gate"]["status"]
         report["finished_utc"] = datetime.now(timezone.utc).isoformat()
         report["finished_local"] = datetime.now(ZoneInfo("Asia/Jerusalem")).isoformat()
         measurements = {

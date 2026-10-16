@@ -1,0 +1,51 @@
+{
+  "adapter_memory_bytes": {
+    "counter_instances": {
+      "dedicated": "\\\\desktop-4ugm17v\\gpu adapter memory(luid_0x00000000_0x0000b05b_phys_0)\\dedicated usage",
+      "shared": "\\\\desktop-4ugm17v\\gpu adapter memory(luid_0x00000000_0x0000b05b_phys_0)\\shared usage"
+    },
+    "dedicated": 8299986944,
+    "shared": 3008876544
+  },
+  "counter_command": "Get-Counter -Counter '\\GPU Process Memory(*)\\Dedicated Usage', '\\GPU Process Memory(*)\\Shared Usage', '\\GPU Adapter Memory(*)\\Dedicated Usage', '\\GPU Adapter Memory(*)\\Shared Usage' -SampleInterval 1 -MaxSamples 1",
+  "counter_paths": [
+    "\\GPU Process Memory(*)\\Dedicated Usage",
+    "\\GPU Process Memory(*)\\Shared Usage",
+    "\\GPU Adapter Memory(*)\\Dedicated Usage",
+    "\\GPU Adapter Memory(*)\\Shared Usage"
+  ],
+  "gpu": {
+    "cuda_physical_bytes": 8585216000,
+    "name": "NVIDIA GeForce RTX 4060 Ti",
+    "nvidia_smi_free_mib_at_sample": 45,
+    "nvidia_smi_total_mib": 8188,
+    "nvidia_smi_used_mib_at_sample": 7905
+  },
+  "measurement_phase": "exact Kev-4B training process active, before supervisor-directed stop",
+  "raw_runtime_evidence": "runs/judge-manipulation-phase4/windows-smoke/windows-gpu-memory-summary.json",
+  "raw_runtime_evidence_sha256": "22d5312588a5611a259671fe9b1a2161edf2f9663bf19bbd1bb9c92c8fc3f16b",
+  "recorded_on": "2026-10-16",
+  "sampled_at_utc": "2026-10-16T06:53:09.6870517Z",
+  "schema_version": 1,
+  "vm_process_memory_bytes": {
+    "counter_instances": {
+      "dedicated": "\\\\desktop-4ugm17v\\gpu process memory(pid_2188_luid_0x00000000_0x0000b05b_phys_0#2)\\dedicated usage",
+      "shared": "\\\\desktop-4ugm17v\\gpu process memory(pid_2188_luid_0x00000000_0x0000b05b_phys_0#2)\\shared usage"
+    },
+    "dedicated": 7946473472,
+    "shared": 2971664384
+  },
+  "windows_vm_worker": {
+    "attribution_note": "PID 2188 is vmwp, the WSL VM worker. These Windows process counters are VM-level and do not map Linux PID 10274 exclusively to Windows PID 2188.",
+    "linux_pid_to_windows_pid_mapping": null,
+    "linux_training_pid_observed": 10274,
+    "pid": 2188,
+    "process_name": "vmwp"
+  },
+  "wsl_memory_bytes": {
+    "MemAvailable": 17705660416,
+    "MemTotal": 20974440448,
+    "SwapFree": 8589934592,
+    "SwapTotal": 8589934592
+  }
+}

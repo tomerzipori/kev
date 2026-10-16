@@ -1,0 +1,279 @@
+{
+  "artifact_hashes": {
+    "current_runner_source_with_memory_gate": {
+      "path": "experiments/judge-manipulation/run_phase4_smoke.py",
+      "sha256": "31a75bc629fa1e0c7830e5bf198390bc3ad96107d3fa2f07cc331b3a1ace1c45"
+    },
+    "executed_runner_source": {
+      "path": "experiments/judge-manipulation/run_phase4_smoke.py",
+      "revision": "6ca8955",
+      "sha256": "da935cf6a058ea310461d4c2f97c9ce3b5fad36b3c9da4a52bd2a1199198a0c2"
+    },
+    "fixture": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/long-state-2048.jsonl",
+      "sha256": "ccc4c494c47e2559334b93842ce30c218da0e0fb6234eaf8d111aa2c5c97be20"
+    },
+    "fixture_metadata": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/fixture.json",
+      "sha256": "114441351e4906027223ecc0935660538bf4ecf4ddd77d08d850f24a036cb732"
+    },
+    "focused_cache_fixed_log": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/focused-fast-cache-tests-correct-env.log",
+      "sha256": "05a655ad92f64bf6d037a37c192087959af5dd2182e2d373a218a0ce454aa3ee"
+    },
+    "full_fast_suite_log": {
+      "path": "runs/judge-manipulation-phase4/validation-fast-tests.log",
+      "sha256": "81a597f5b800ce8c08904398279b7309b0b8e6a0ce0dd4accbac4641fea1044a"
+    },
+    "in_training_model_evidence": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/proof/in_training_model.json",
+      "sha256": "f86ddc9033612deae1dad85750f600ebcc6ef8ede2f1705d7b06ce706d3d196e"
+    },
+    "instrumented_trainer": {
+      "path": "experiments/judge-manipulation/phase4_train_instrumented.py",
+      "sha256": "6bedf53a6dfa1f0e1595f73e80b527e8e5a78727d2d67be4cdff5591792a621a"
+    },
+    "memory_gate_stop_evidence": {
+      "path": "experiments/judge-manipulation/memory-gate-stop-phase-4.json",
+      "sha256": "35ade5fc6aa681a93e689c758525d2db65012f818dfd37132a7b51c058b0bfef"
+    },
+    "model_lock": {
+      "path": "experiments/judge-manipulation/model-lock-phase-4.json",
+      "sha256": "0bdce0513f5d85c09154f6a8808ad973bc2848d679d1144c7093e64dc6d8fb19"
+    },
+    "postrun_idle_check": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/postrun-idle-check.txt",
+      "sha256": "12ff35b6a8e7d062fe377e65bc5931ac2f480f11eddbe53fb12f872f305f459b"
+    },
+    "raw_attempt_report_json": {
+      "path": "experiments/judge-manipulation/report-phase-4.json",
+      "sha256": "cfe2571a4e8fd9bfdf35b1b0d649b50b20e5461e0f718ef1320c3a607cf5d49e"
+    },
+    "raw_attempt_report_markdown": {
+      "path": "experiments/judge-manipulation/report-phase-4.md",
+      "sha256": "5297cfdae714a11c008dd57aa2cce9ae5db0595f659fe3b61dc9bd5b44c345c0"
+    },
+    "reload_verifier": {
+      "path": "experiments/judge-manipulation/verify_phase4_reload.py",
+      "sha256": "50f8a31685261a3fb57af763b5ec3cd916269df99f8ae93b9b043ae35b7f40fa"
+    },
+    "training_failure_memory": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/proof/training-failure-memory.json",
+      "sha256": "c081fbbdd5bd5d567e4e0eececff1e1e77b78653aa812fcc231bd7c13ac03dc0"
+    },
+    "windows_counter_portable_summary": {
+      "path": "experiments/judge-manipulation/windows-gpu-counters-phase-4.json",
+      "sha256": "d92e08b5df78792f123edcf148c609528a6a13265a133e40a5d36e43529f5599"
+    },
+    "windows_counter_runtime_summary": {
+      "path": "runs/judge-manipulation-phase4/windows-smoke/windows-gpu-memory-summary.json",
+      "sha256": "22d5312588a5611a259671fe9b1a2161edf2f9663bf19bbd1bb9c92c8fc3f16b"
+    },
+    "windows_counter_summary": {
+      "path": "experiments/judge-manipulation/windows-gpu-counters-phase-4.json",
+      "sha256": "d92e08b5df78792f123edcf148c609528a6a13265a133e40a5d36e43529f5599"
+    }
+  },
+  "decision": "The registered resident 8 GiB memory gate failed on this measured Windows/WSL desktop. No Phase 2 or Phase 3 transition follows from this run.",
+  "execution_outcome": {
+    "backward_stage_observed_at_utc": "2026-10-16T06:50:52.359866+00:00",
+    "checkpoint_save": "not reached; no completed training checkpoint was recorded",
+    "model_load_and_warm_start": "passed; strict parent warm start covered 496 adapter tensors and pointer head",
+    "optimizer_step_completion": "not established; no training_metrics.json or optimizer-step evidence was produced, so no completed optimizer update is claimed",
+    "overall_elapsed_seconds": 400.602,
+    "raw_report_classification": "training_failure",
+    "raw_report_status": "failed",
+    "save_reload_proof": null,
+    "terminal_error": "KeyboardInterrupt from the root-directed SIGINT; no CUDA OOM exception occurred.",
+    "terminal_error_type": "KeyboardInterrupt",
+    "terminal_stage": {
+      "stage": "forward",
+      "updated_utc": "2026-10-16T06:55:10.860087+00:00"
+    },
+    "training_elapsed_seconds": 381.289,
+    "training_metrics": null,
+    "training_return_code": -2
+  },
+  "memory_gate": {
+    "allocated_excess_bytes": 1839244288,
+    "allocator_evidence_sources": [
+      "runs/judge-manipulation-phase4/windows-smoke/proof/in_training_model.json",
+      "runs/judge-manipulation-phase4/windows-smoke/proof/training-failure-memory.json",
+      "experiments/judge-manipulation/report-phase-4.json"
+    ],
+    "budget_rule": "min(8 * 1024^3, actual CUDA physical device bytes)",
+    "cuda_free_bytes_at_failure": 0,
+    "limit_bytes": 8585216000,
+    "no_oom_claim": true,
+    "peak_allocated_bytes": 10424460288,
+    "peak_reserved_bytes": 10720641024,
+    "physical_device_bytes": 8585216000,
+    "reserved_excess_bytes": 2135425024,
+    "status": "failed_memory_budget",
+    "warm_start_peak_allocated_bytes": 8647299072,
+    "warm_start_peak_reserved_bytes": 8665432064
+  },
+  "model": {
+    "base_repo": "Qwen/Qwen3.5-4B-Base",
+    "base_revision": "1001bb4d826a52d1f399e183466143f4da7b741b",
+    "model_lock_sha256": "0bdce0513f5d85c09154f6a8808ad973bc2848d679d1144c7093e64dc6d8fb19",
+    "parent_adapter_sha256": "90e817356246e7f18bfa7ca3d31794cd4fbeb3332a66a84cb51d9ceae925f2b2",
+    "parent_head_sha256": "dd633435998ecc751ac538717a3742e32149500fabf7d7276287dbf0693f347c",
+    "parent_repo": "jaredpalmer/kev-4b",
+    "parent_revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+    "tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "verified_base_files": {
+      "model.safetensors-00001-of-00002.safetensors": {
+        "matches_hub_lfs": true,
+        "sha256": "df547074dce70532a0493e5433152bd17a65efb89088cfabc2e7e2371a93d712",
+        "size": 5329398712
+      },
+      "model.safetensors-00002-of-00002.safetensors": {
+        "matches_hub_lfs": true,
+        "sha256": "590fbaac095dd31db886c322d9d2f7df47777966391acf306ddddc3e4e3a15ef",
+        "size": 3990429344
+      },
+      "model.safetensors.index.json": {
+        "matches_hub_lfs": false,
+        "sha256": "eae340074abb0a5f31a6621f7ae8e8248a7c1790df04a722c4e4b70c2a6d1dbb",
+        "size": 76196
+      }
+    }
+  },
+  "model_runtime": {
+    "branch_tokens": 51,
+    "dtype_evidence": {
+      "frozen_backbone": [
+        "bfloat16"
+      ],
+      "head": [
+        "float32"
+      ],
+      "lora": [
+        "float32"
+      ],
+      "lora_tensor_count": 496,
+      "rank": 16,
+      "trainable_parameter_count": 32464896
+    },
+    "fixture_is_corpus": false,
+    "fixture_repetitions": 32,
+    "fixture_state_tokens_including_delimiter": 2048,
+    "fixture_unique_source_records": 1,
+    "full_encoded_row_tokens": 2099,
+    "kernel_environment": {
+      "attention": "sdpa",
+      "backend": "torch",
+      "deltanet": {
+        "causal_conv1d_fn": "transformers.models.qwen3_5.modeling_qwen3_5.causal_conv1d_fn",
+        "forward": "transformers.models.qwen3_5.modeling_qwen3_5.Qwen3_5GatedDeltaNet.forward",
+        "torch_chunk_gated_delta_rule": "transformers.models.qwen3_5.modeling_qwen3_5.torch_chunk_gated_delta_rule"
+      },
+      "device": "cuda",
+      "dtype": "bfloat16",
+      "gpu": "NVIDIA GeForce RTX 4060 Ti",
+      "packages": {
+        "causal-conv1d": null,
+        "flash-linear-attention": null,
+        "mlx": null,
+        "mlx-lm": null,
+        "peft": "0.21.0",
+        "torch": "2.8.0+cu128",
+        "transformers": "5.17.0",
+        "triton": "3.4.0"
+      },
+      "triton_f32_default": null
+    },
+    "tf32_cudnn": true,
+    "tf32_matmul": true
+  },
+  "recorded_at_local": "2026-10-16T10:05:49.250997+03:00",
+  "recorded_at_utc": "2026-10-16T07:05:49.251004+00:00",
+  "recorded_on": "2026-10-16",
+  "recorded_timezone": "Asia/Jerusalem",
+  "resource_measurements": {
+    "counter_attribution_limit": "Windows counters map to vmwp PID 2188 at the WSL VM level, not exclusively to Linux PID 10274.",
+    "gpu": {
+      "compute_processes_before_training": [],
+      "free_after_training_mib": 7635,
+      "free_before_training_mib": 7487,
+      "minimum_sampled_free_mib": 41,
+      "name": "NVIDIA GeForce RTX 4060 Ti",
+      "nvidia_smi_total_mib": 8188,
+      "peak_sampled_used_mib": 7909,
+      "used_before_training_mib": 463
+    },
+    "windows_gpu_counter_adapter_shared_bytes": 3008876544,
+    "windows_gpu_counter_artifact": "experiments/judge-manipulation/windows-gpu-counters-phase-4.json",
+    "windows_gpu_counter_vm_process_dedicated_bytes": 7946473472,
+    "windows_gpu_counter_vm_process_shared_bytes": 2971664384,
+    "wsl": {
+      "host_ram_reference_gib": 32,
+      "memtotal_bytes": 20974440448,
+      "minimum_memavailable_bytes": 17610113024,
+      "peak_monitored_process_rss_bytes": 9674907648,
+      "wsl_memory_cap_reference": "20 GB, 8 GB swap, 12 processors"
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "baseline_evaluation_run": false,
+    "corpus_built": false,
+    "locked_test_opened": false,
+    "next_gate": "Root/user review of this failed Phase 4 gate and CPU-only report replay. The exact 2,048-state-token fixture and its 51-token question branch cover the registered Phase 4 input shape. Phase 2 and Phase 3 remain pending.",
+    "phase2_ready": false,
+    "phase3_ready": false
+  },
+  "status": "failed_memory_budget",
+  "tracked_markdown_path": "experiments/judge-manipulation/feasibility-gate-phase-4.md",
+  "tracked_markdown_sha256": "de9aa06c14de714fd01188ed4b08b84e774b69c5e4249c9b12827fcfd595ce68",
+  "validation": {
+    "first_full_fast_suite": {
+      "cache_permission_errors": [
+        "tests/test_unit.py::test_user_text_cannot_forge_delimiters",
+        "tests/test_unit.py::test_encode_positions_restart_per_branch"
+      ],
+      "cache_permission_failure": "tests/test_research.py::test_training_plan_matches_registered_screen",
+      "command": "uv run --locked --extra serve --python 3.13.16 python -m pytest tests/test_unit.py tests/test_research.py tests/test_generators.py tests/test_conventions.py tests/test_documents_tools.py tests/test_hard_v1.py tests/test_devtools_v1.py tests/test_breadth_v1.py tests/test_rounds.py tests/test_skill_scripts.py -q",
+      "interpretation": "Three failures came from attempted writes under the root-owned default Hugging Face cache; not a hardware result.",
+      "rerun": "The full suite was not rerun.",
+      "result": "1 failed, 475 passed, 26 skipped, 1 warning, 2 errors in 19m23s"
+    },
+    "focused_cache_fixed_rerun": {
+      "cache": "/home/tomer/.cache/huggingface-phase4",
+      "command_log": "runs/judge-manipulation-phase4/windows-smoke/focused-fast-cache-tests-correct-env.log",
+      "executed_command": "JUDGE_MANIPULATION_PHASE4_HF_HOME=/home/tomer/.cache/huggingface-phase4 HF_HOME=/home/tomer/.cache/huggingface-phase4 HF_HUB_CACHE=/home/tomer/.cache/huggingface-phase4/hub HF_DATASETS_CACHE=/home/tomer/.cache/huggingface-phase4/datasets JUDGE_MANIPULATION_PHASE4_HF_HOME=/home/tomer/.cache/huggingface-phase4 HF_HOME=/home/tomer/.cache/huggingface-phase4 HF_HUB_CACHE=/home/tomer/.cache/huggingface-phase4/hub HF_DATASETS_CACHE=/home/tomer/.cache/huggingface-phase4/datasets uv run --project /mnt/c/Users/Tomer/Documents/GitHub/kev --locked --extra serve --python 3.13.16 python -m pytest tests/test_unit.py::test_user_text_cannot_forge_delimiters tests/test_unit.py::test_encode_positions_restart_per_branch tests/test_research.py::test_training_plan_matches_registered_screen -q",
+      "interpretation": "Only the three cache-affected nodes were rerun; the original full-suite outcome remains as recorded.",
+      "nodes": [
+        "tests/test_unit.py::test_user_text_cannot_forge_delimiters",
+        "tests/test_unit.py::test_encode_positions_restart_per_branch",
+        "tests/test_research.py::test_training_plan_matches_registered_screen"
+      ],
+      "result": "3 passed in 33.05s"
+    },
+    "frozen_artifact_hashes": {
+      "checked_paths": 12,
+      "mismatches": []
+    },
+    "postrun_idle_check": {
+      "evidence_path": "runs/judge-manipulation-phase4/windows-smoke/postrun-idle-check.txt",
+      "evidence_sha256": "12ff35b6a8e7d062fe377e65bc5931ac2f480f11eddbe53fb12f872f305f459b",
+      "nvidia_smi_compute_apps": [],
+      "sampled_at_utc": "2026-10-16T07:08:18.9005126Z",
+      "trainer_process_matches": 0
+    },
+    "python_syntax": "passed: python -m py_compile for the five Phase 4 Python scripts",
+    "python_syntax_command": "python -m py_compile experiments/judge-manipulation/run_phase4_smoke.py experiments/judge-manipulation/model_lock_phase4.py experiments/judge-manipulation/phase4_model_evidence.py experiments/judge-manipulation/phase4_train_instrumented.py experiments/judge-manipulation/verify_phase4_reload.py",
+    "report_only_replay": {
+      "budget_bytes": 8585216000,
+      "command": "Load the retained raw report and call run_phase4_smoke.memory_budget_assessment(report, a nonexistent runtime path); no CUDA/model process is started.",
+      "exceeded_by_bytes": 1839244288,
+      "peak_allocated_bytes": 10424460288,
+      "result": "failed_memory_budget",
+      "runtime_proof_directory_exists": false,
+      "status": "passed"
+    },
+    "wsl_setup_shell_syntax": "passed: bash -n experiments/judge-manipulation/setup_phase4_wsl.sh",
+    "wsl_setup_shell_syntax_command": "bash -n experiments/judge-manipulation/setup_phase4_wsl.sh"
+  }
+}
