@@ -2,3 +2,4 @@
 *.json text eol=lf
 *.jsonl text eol=lf
 MASTER-PLAN.md -text whitespace=cr-at-eol
+experiments/judge-manipulation/converter-requirements-phase-2.lock.txt text eol=lf
