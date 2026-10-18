@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "status": "structural_nonavacuity_passed_quality_and_group_generalization_unresolved",
+  "scope": "Frozen Phase 2 local 200-row checker pilot only. No full corpus, Phase 3 freeze, Kev baseline, training, or locked-test evaluation.",
+  "protocol": {
+    "candidate_count": 200,
+    "models_sequential_local_only": [
+      "qwen3-4b-q4km",
+      "phi4-mini-q4km"
+    ],
+    "no_prompt_label_runtime_or_retry_changes": true,
+    "no_manual_tags_or_paid_remote_calls": true,
+    "prompt_lock_sha256": "ec0c7c03afb8938f4466457914df45efa738affb87a52887517ea325ec95b505",
+    "runtime_lock_sha256": "1a767ebd93ce48ab0dd4e1e0490a01bf76d84f6899e64327cb4460f02f6fe720",
+    "candidate_sha256": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f",
+    "candidate_unique_rows": 200
+  },
+  "input_sha256": {
+    "MASTER-PLAN.md": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+    "experiments/judge-manipulation/registration.json": "e9cdf442f451ac5344aa7d188db285ccb241b4e7ffb0be032efd3041dbe28c76",
+    "experiments/judge-manipulation/SOURCE-CHECKPOINT-phase-2.json": "a4b2c38e2d248a65d3cc78a587d54a8a05e6d835d55aa6869e951dbfb4fcf34e",
+    "experiments/judge-manipulation/source-registry.json": "2818e4f68a8adc352d71112b195eb5be7b389b47796ce3c6e63f80d0efb19ec7",
+    "experiments/judge-manipulation/pilot-plan-phase-2.json": "8f870598a6463868ddfd7254b0682027e1d06d02845c6e73c93dd66809316fb0",
+    "experiments/judge-manipulation/checker-prompts-phase-2.json": "ec0c7c03afb8938f4466457914df45efa738affb87a52887517ea325ec95b505",
+    "experiments/judge-manipulation/checker-runtime-lock-phase-2.json": "1a767ebd93ce48ab0dd4e1e0490a01bf76d84f6899e64327cb4460f02f6fe720",
+    "experiments/judge-manipulation/construction-template-lock-phase-2.json": "e247737c09c304495cde56194a5f82fc7ebbf51e9610652197903dbbded8cf33",
+    "experiments/judge-manipulation/oasst-selection-lock-phase-2.json": "8ccf80751ead4a628f35a5e97c9eeee46c32b593289310d7bb884acf57539780",
+    "experiments/judge-manipulation/model-lock-phase-4.json": "0bdce0513f5d85c09154f6a8808ad973bc2848d679d1144c7093e64dc6d8fb19",
+    "experiments/judge-manipulation/converter-requirements-phase-2.lock.txt": "928d2f586bedbeb86050e350448cead8eb4512c076712d1ba339f007483aacbb",
+    "experiments/judge-manipulation/phase2_pilot.py": "382a94d853db63ed5e3f429287e2192c758224a3d30ba238aac269b6aaeef8ae",
+    "experiments/judge-manipulation/phase2_checker.py": "ef4be8ab3e61370d34dc57612aed453da9168d25ae834061afd4eda71b9e0327",
+    "experiments/judge-manipulation/test_phase2_pilot.py": "cc1a2ffcaea47228ca6f44ea13b812b98c7e7d1bebca6925a279014d202b85a3",
+    "experiments/judge-manipulation/setup_checker_runtime_phase2.sh": "ab729bffbcaa5c52b139efa08e8fd927a7a27410a3db151f800a846ef24fba7e",
+    "experiments/judge-manipulation/pilot-candidate-manifest-phase-2.json": "19221a99df08ce95663b8cbaae5c85e394d9e983a72d31ba6cd53a868806e7f4",
+    "experiments/judge-manipulation/pilot-candidate-index-phase-2.jsonl": "4bc083784ba6a1c72dc3e999d5c710a1569cbe6bf87deca444dd9f9662fc6572",
+    "runs/judge-manipulation-phase2-pilot/candidates.jsonl": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f"
+  },
+  "output_sha256": {
+    "runs/judge-manipulation-phase2-pilot/checker-outputs/qwen3-4b-q4km.jsonl": "d7dd33ba85723d2f49af7a0760802cc2c921273d0c8b34e06ec6cfa220207a25",
+    "runs/judge-manipulation-phase2-pilot/checker-outputs/phi4-mini-q4km.jsonl": "79e1c4a8836050f9a404d8b408d5aa13d2d2ae698f7a4c82e68dc14a77c7456e",
+    "experiments/judge-manipulation/pilot-dispositions-phase-2.jsonl": "c3b924e4e7d6e9b8da54af40f6ba8817776e7d28524d4895a0ad98fc479c9f0d",
+    "experiments/judge-manipulation/pilot-disposition-report-phase-2.json": "8549d568af49df9883e962fdca4dd7c27eead20314bdfe50f9ba8d83eaf80340",
+    "runs/judge-manipulation-phase2-pilot/accepted-semantic-labels.jsonl": "0234461eb6d09d7a73ebd83ba69f01476911377633f825e715d925961d0b0c71"
+  },
+  "checker_runs": {
+    "qwen3-4b-q4km": {
+      "ledger_rows": 200,
+      "unique_candidate_ids": 200,
+      "ledger_sha256": "d7dd33ba85723d2f49af7a0760802cc2c921273d0c8b34e06ec6cfa220207a25",
+      "runtime_identity_count": 1,
+      "runtime_identity": {
+        "model_id": "qwen3-4b-q4km",
+        "gguf_path": "/home/tomer/.cache/huggingface-phase2/hub/blobs/93/9375c1fd02b321abc3f51b69ff7fcdd187af17f0d694c5b05000b54664292e17",
+        "gguf_sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5",
+        "tokenizer_files_sha256": "8dd52793d73ce46ec3cc334c9fcf4f5d46bfbd21591c22b919ac9aeff65dbb0f",
+        "live_model_alias": "qwen3-4b-q4km",
+        "live_model_path": "/home/tomer/.cache/huggingface-phase2/hub/blobs/93/9375c1fd02b321abc3f51b69ff7fcdd187af17f0d694c5b05000b54664292e17",
+        "live_context_size": 8192,
+        "advertised_model_ids": [
+          "qwen3-4b-q4km"
+        ]
+      },
+      "quality_counts": {
+        "valid_supported": 175,
+        "parser_rejected": 17,
+        "valid_json_but_supported_false": 1,
+        "run_error": 7
+      },
+      "rejection_reasons": {
+        "PilotError: evidence string is not present verbatim in the original response": 16,
+        "valid JSON schema/evidence, supported=false": 1,
+        "PilotError: unsupported checker output must set manipulation=false": 1,
+        "completion finish_reason 'length' is not accepted": 7
+      }
+    },
+    "phi4-mini-q4km": {
+      "ledger_rows": 200,
+      "unique_candidate_ids": 200,
+      "ledger_sha256": "79e1c4a8836050f9a404d8b408d5aa13d2d2ae698f7a4c82e68dc14a77c7456e",
+      "runtime_identity_count": 1,
+      "runtime_identity": {
+        "model_id": "phi4-mini-q4km",
+        "gguf_path": "/home/tomer/.cache/judge-manipulation-phase2/models/phi-4-mini-instruct-Q4_K_M.gguf",
+        "gguf_sha256": "6ec1dc61cdda56cd97a4cc22f3aee71569fa60c989368616be92e8ad223fa6ab",
+        "tokenizer_files_sha256": "58b359c68f8cd5c85f92c217d97e594c287160754b8a707045e469e459373fc9",
+        "live_model_alias": "phi4-mini-q4km",
+        "live_model_path": "/home/tomer/.cache/judge-manipulation-phase2/models/phi-4-mini-instruct-Q4_K_M.gguf",
+        "live_context_size": 8192,
+        "advertised_model_ids": [
+          "phi4-mini-q4km"
+        ]
+      },
+      "quality_counts": {
+        "parser_rejected": 93,
+        "valid_json_but_supported_false": 70,
+        "run_error": 2,
+        "valid_supported": 35
+      },
+      "rejection_reasons": {
+        "PilotError: unsupported checker output must set manipulation=false": 11,
+        "valid JSON schema/evidence, supported=false": 70,
+        "PilotError: evidence string is not present verbatim in the original response": 21,
+        "completion finish_reason 'length' is not accepted": 2,
+        "PilotError: checker evidence must be a non-empty array": 60,
+        "PilotError: checker output must have exactly supported, manipulation, and evidence fields": 1
+      }
+    }
+  },
+  "server_runtime_proof": {
+    "qwen": {
+      "log_path_linux_cache": "/home/tomer/.cache/judge-manipulation-phase2/qwen-pilot-20261018.log",
+      "log_sha256": "808318431ec86fb29d5abe8a98c5adbe78176d79a2f70a35122e4851cd39a2d4",
+      "gpu_layers_offloaded": "37/37"
+    },
+    "phi": {
+      "log_path_linux_cache": "/home/tomer/.cache/judge-manipulation-phase2/phi-pilot-20261018.log",
+      "log_sha256": "a70fc783af6e9e360217d946dc727e84602521a71e82e2a75bfcc0ad989ebcf5",
+      "gpu_layers_offloaded": "33/33"
+    }
+  },
+  "dispositions": {
+    "registered_structural_nonavacuity_gate": "pass",
+    "structural_gate_failures": [],
+    "counts": {
+      "quarantine_malformed_or_unsupported": 162,
+      "quarantine_checker_disagreement": 22,
+      "accepted_known_construction": 5,
+      "quarantine_inference_failure": 7,
+      "accepted_semantic_agreement": 4
+    },
+    "accepted_counts": {
+      "known_positive": 3,
+      "known_negative": 2,
+      "oasst_semantic_agreement": 4
+    },
+    "accepted_label_counts": {
+      "True": 3,
+      "False": 6
+    },
+    "malformed_unsupported_first_failure_counts": {
+      "phi4-mini-q4km: unsupported checker output must set manipulation=false": 11,
+      "one or more checkers marked the response unsupported": 66,
+      "phi4-mini-q4km: evidence string is not present verbatim in the original response": 20,
+      "qwen3-4b-q4km: evidence string is not present verbatim in the original response": 16,
+      "phi4-mini-q4km: checker evidence must be a non-empty array": 47,
+      "phi4-mini-q4km: checker output must have exactly supported, manipulation, and evidence fields": 1,
+      "qwen3-4b-q4km: unsupported checker output must set manipulation=false": 1
+    },
+    "accepted_oasst_kev_records": {
+      "count": 4,
+      "sha256": "0234461eb6d09d7a73ebd83ba69f01476911377633f825e715d925961d0b0c71",
+      "loader_sha256": "0234461eb6d09d7a73ebd83ba69f01476911377633f825e715d925961d0b0c71"
+    },
+    "dispositions_sha256": "c3b924e4e7d6e9b8da54af40f6ba8817776e7d28524d4895a0ad98fc479c9f0d",
+    "disposition_report_sha256": "8549d568af49df9883e962fdca4dd7c27eead20314bdfe50f9ba8d83eaf80340"
+  },
+  "coverage": {
+    "source_counts": {
+      "sourcefree_construction": 160,
+      "oasst1": 40
+    },
+    "reservation_counts": {
+      "train": 64,
+      "calibration": 88,
+      "development": 48
+    },
+    "construction_class_rows": {
+      "direct_override": 20,
+      "fake_authority": 20,
+      "role_spoofing": 20,
+      "rubric_replacement": 20,
+      "forged_verdict": 20,
+      "reward_pressure": 20,
+      "obfuscation": 20,
+      "checker_target": 20
+    },
+    "variant_rows": {
+      "attack": 80,
+      "control": 80
+    },
+    "placement_rows": {
+      "prefix": 32,
+      "middle": 32,
+      "suffix": 32,
+      "after512": 32,
+      "near2048": 32
+    },
+    "attack_placement_token_min_max": {
+      "prefix": [
+        1,
+        1
+      ],
+      "middle": [
+        11,
+        14
+      ],
+      "suffix": [
+        27,
+        31
+      ],
+      "after512": [
+        513,
+        532
+      ],
+      "near2048": [
+        1901,
+        1919
+      ]
+    },
+    "control_type_rows": {
+      "quoted_examples": 28,
+      "fictional_dialogue": 26,
+      "ordinary_score_discussion": 26,
+      "refusals": 28,
+      "code_comments": 26,
+      "poor_answers": 26
+    },
+    "reservation_specific_template_families": 24,
+    "body_ids": 80,
+    "effective_lineage_groups": {
+      "total": 43,
+      "by_source": {
+        "sourcefree_construction": 3,
+        "oasst1": 40
+      },
+      "by_reservation": {
+        "train": 1,
+        "calibration": 41,
+        "development": 1
+      },
+      "synthetic_class_reservation_groups": {
+        "direct_override|train": 1,
+        "direct_override|calibration": 1,
+        "direct_override|development": 1,
+        "fake_authority|train": 1,
+        "fake_authority|calibration": 1,
+        "fake_authority|development": 1,
+        "role_spoofing|train": 1,
+        "role_spoofing|calibration": 1,
+        "role_spoofing|development": 1,
+        "rubric_replacement|train": 1,
+        "rubric_replacement|calibration": 1,
+        "rubric_replacement|development": 1,
+        "forged_verdict|train": 1,
+        "forged_verdict|calibration": 1,
+        "forged_verdict|development": 1,
+        "reward_pressure|train": 1,
+        "reward_pressure|calibration": 1,
+        "reward_pressure|development": 1,
+        "obfuscation|train": 1,
+        "obfuscation|calibration": 1,
+        "obfuscation|development": 1,
+        "checker_target|train": 1,
+        "checker_target|calibration": 1,
+        "checker_target|development": 1
+      }
+    },
+    "sourcefree_state_tokens_min_max": [
+      43,
+      2022
+    ],
+    "obfuscation_attack_rows_with_format_or_invisible_codepoints": 17,
+    "rows_with_literal_role_markers": 7
+  },
+  "readiness": {
+    "corpus_scale_usability_pass": false,
+    "group_generalization_pass": false,
+    "phase3_freeze_ready": false,
+    "training_ready": false,
+    "reason": "Only 9/200 rows were accepted; 162 rows were quarantined as malformed/unsupported, 22 as checker disagreements, and only 3 effective synthetic lineage components exist. The registered nonvacuous structural gate is not a corpus-quality or generalization claim.",
+    "next_step_constraint": "Root-controlled Phase 4 shared-memory source checkpoint and benchmark coordination may proceed. Before Phase 3 or training, review checker-output usability and audit effective group counts/independent-sample feasibility. Do not retry, alter prompts/labels, or manually relabel this frozen pilot."
+  },
+  "cleanup": {
+    "qwen_server_pid": 822,
+    "phi_server_pid": 817,
+    "both_servers_stopped": true,
+    "localhost_port_18082_free": true,
+    "gpu_released": true,
+    "phi_loaded_after_pass": false,
+    "raw_candidate_and_checker_ledgers_remain_ignored": true
+  },
+  "aggregate_only": true,
+  "raw_response_or_candidate_text_in_report": false
+}
