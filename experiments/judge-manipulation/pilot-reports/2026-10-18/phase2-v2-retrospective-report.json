@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "protocol": "judge-manipulation-phase-2-v2-retrospective",
+  "report_type": "aggregate_only_retrospective_reclassification",
+  "created_on": "2026-10-18",
+  "fresh_v2_pilot": false,
+  "pilot_gate_pass": false,
+  "pilot_gate_status": "not evaluated; v1 candidates and outputs are reused only for retrospective policy validation",
+  "v1_dispositions_unchanged": true,
+  "v2_semantics": {
+    "construction_label_authority": "exact deterministic reconstruction from frozen construction lock plus exact evidence occurrence validation",
+    "construction_checker_outputs": "QC only; cannot overwrite or veto a verified construction label",
+    "oasst_label_authority": "two complete valid supported local outputs with exact boolean agreement",
+    "checker_prompt_or_runtime_changed": false
+  },
+  "inputs": {
+    "master_plan_sha256": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+    "construction_lock_sha256": "e247737c09c304495cde56194a5f82fc7ebbf51e9610652197903dbbded8cf33",
+    "pilot_plan_sha256": "8f870598a6463868ddfd7254b0682027e1d06d02845c6e73c93dd66809316fb0",
+    "source_registry_sha256": "2818e4f68a8adc352d71112b195eb5be7b389b47796ce3c6e63f80d0efb19ec7",
+    "checker_prompt_sha256": "ec0c7c03afb8938f4466457914df45efa738affb87a52887517ea325ec95b505",
+    "runtime_lock_sha256": "1a767ebd93ce48ab0dd4e1e0490a01bf76d84f6899e64327cb4460f02f6fe720",
+    "candidate_sha256": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f",
+    "qwen_ledger_sha256": "d7dd33ba85723d2f49af7a0760802cc2c921273d0c8b34e06ec6cfa220207a25",
+    "phi_ledger_sha256": "79e1c4a8836050f9a404d8b408d5aa13d2d2ae698f7a4c82e68dc14a77c7456e",
+    "v1_dispositions_sha256": "c3b924e4e7d6e9b8da54af40f6ba8817776e7d28524d4895a0ad98fc479c9f0d",
+    "v1_aggregate_report_sha256": "8549d568af49df9883e962fdca4dd7c27eead20314bdfe50f9ba8d83eaf80340",
+    "bound_record_counts": {
+      "qwen3-4b-q4km": 200,
+      "phi4-mini-q4km": 200
+    }
+  },
+  "runtime_smoke_evidence": {
+    "scope": "Generic one-request smoke only; no pilot prompts or checker calls. These proofs establish the CUDA path/offload, not full pilot runtime readiness.",
+    "qwen3-4b-q4km": {
+      "gpu_layers_offloaded": 37,
+      "gpu_layers_total": 37,
+      "status": "GPU computation and smoke assertions reached; final report has a live-log read I/O gap and no raw completion body was persisted.",
+      "proof_path": "experiments/judge-manipulation/qwen-recovery-proof-phase-2.json",
+      "proof_sha256": "3d1272b6607569f4d44423efc9ff79b1c746d5707008abfbde1cf2cff7d0ffd2",
+      "server_log_path": "runs/judge-manipulation-phase2-runtime/20261018/qwen-recovery-server.log",
+      "server_log_sha256": "c420c9e0952742051e84fa792de245521b028b156f355ff457ccb8d54996367d"
+    },
+    "phi4-mini-q4km": {
+      "gpu_layers_offloaded": 33,
+      "gpu_layers_total": 33,
+      "status": "Passed generic smoke with CUDA offload proof.",
+      "smoke_path": "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-smoke.json",
+      "smoke_sha256": "f9820ff606a0b2c2ad9e4c11f030648ecf308e5bb25dce223e2565a9d6a325d2",
+      "server_log_path": "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-server.log",
+      "server_log_sha256": "c3f9bb84865445da34bbde316d2b4a6ce86bb6edd4d2ce8fcf9595630b6ff147"
+    },
+    "attempts_ledger_sha256": "aaaec063fee656b3f9d2a1462cdcdd6523c2b1a5846fdfe118d7f0d9278c2b28",
+    "gpu_lease_released": true
+  },
+  "counts": {
+    "candidate_count": 200,
+    "deterministically_reconstructed_known_count": 160,
+    "accepted_known_construction": {
+      "negative": 80,
+      "positive": 80
+    },
+    "accepted_semantic_agreement": 4,
+    "dispositions": {
+      "accepted_known_construction": 160,
+      "quarantine_malformed_or_unsupported": 29,
+      "quarantine_inference_failure": 7,
+      "accepted_semantic_agreement": 4
+    },
+    "accepted_total": 164
+  },
+  "construction_checker_qc": {
+    "by_model": {
+      "qwen3-4b-q4km": {
+        "valid_supported": 146,
+        "malformed": 13,
+        "valid_unsupported": 1
+      },
+      "phi4-mini-q4km": {
+        "malformed": 73,
+        "valid_unsupported": 57,
+        "truncated_or_incomplete": 1,
+        "valid_supported": 29
+      }
+    },
+    "construction_checker_disagreement_rows": 22
+  },
+  "construction_design_coverage": {
+    "synthetic_pair_count": 80,
+    "synthetic_row_count": 160,
+    "pairs_by_reservation": {
+      "calibration": 24,
+      "development": 24,
+      "train": 32
+    },
+    "attack_classes_by_pair": {
+      "checker_target": 10,
+      "direct_override": 10,
+      "fake_authority": 10,
+      "forged_verdict": 10,
+      "obfuscation": 10,
+      "reward_pressure": 10,
+      "role_spoofing": 10,
+      "rubric_replacement": 10
+    },
+    "placements_by_pair": {
+      "after512": 16,
+      "middle": 16,
+      "near2048": 16,
+      "prefix": 16,
+      "suffix": 16
+    },
+    "negative_control_types_by_pair": {
+      "code_comments": 13,
+      "fictional_dialogue": 13,
+      "ordinary_score_discussion": 13,
+      "poor_answers": 13,
+      "quoted_examples": 14,
+      "refusals": 14
+    },
+    "template_family_count": 24,
+    "unique_body_keys": 80,
+    "unique_seed_keys": 80,
+    "body_recipe_count_and_pair_counts": {
+      "recipe_count": 3,
+      "pair_counts": [
+        24,
+        24,
+        32
+      ]
+    },
+    "filler_recipe_count_and_pair_counts": {
+      "recipe_count": 3,
+      "pair_counts": [
+        24,
+        24,
+        32
+      ]
+    },
+    "effective_synthetic_groups_by_reservation": {
+      "calibration": {
+        "groups": 1,
+        "rows": 48
+      },
+      "development": {
+        "groups": 1,
+        "rows": 48
+      },
+      "train": {
+        "groups": 1,
+        "rows": 64
+      }
+    }
+  },
+  "accepted_oasst_loader_partition_sha256": "0234461eb6d09d7a73ebd83ba69f01476911377633f825e715d925961d0b0c71",
+  "external_lineage_audit": {
+    "path": "experiments/judge-manipulation/pilot-reports/2026-10-18/phase2-external-lineage-audit.json",
+    "sha256": "8cf8435d3a40d5da227f01d23f497d515e4c6e77c113d7cc034abb60e01a5a6e",
+    "school_pair_only_upper_bound": 105,
+    "school_suffix_linked_components": 98,
+    "school_component_size_histogram": {
+      "1": 93,
+      "2": 3,
+      "3": 2
+    },
+    "school_target_eligibility_and_true_independence": "unresolved",
+    "notinject_unique_prompt_groups": 339,
+    "notinject_eligible_response_capacity": {
+      "attack": 0,
+      "negative": 0
+    }
+  },
+  "lineage_coverage": {
+    "effective_group_count": 43,
+    "by_source_reservation": {
+      "sourcefree_construction:train": {
+        "groups": 1,
+        "rows": 64
+      },
+      "sourcefree_construction:calibration": {
+        "groups": 1,
+        "rows": 48
+      },
+      "sourcefree_construction:development": {
+        "groups": 1,
+        "rows": 48
+      },
+      "oasst1:calibration": {
+        "groups": 40,
+        "rows": 40
+      }
+    }
+  },
+  "limitations": [
+    "This retrospective result does not satisfy a fresh v2 pilot gate or authorize full-corpus processing, training, or Phase 3 freeze.",
+    "The v1 candidate set has only three synthetic lineage groups; the v2 label rule does not create independent coverage.",
+    "All original v1 dispositions and raw ledgers remain unchanged and bound to their original files.",
+    "School of Reward Hacks lineage audit conservatively merges pairs sharing repeated exact 64-character response suffix hashes (transitive closure): 98 components from a pair-only upper bound of 105; target eligibility and independence remain unresolved."
+  ]
+}

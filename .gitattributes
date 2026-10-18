@@ -6,3 +6,4 @@ experiments/judge-manipulation/converter-requirements-phase-2.lock.txt text eol=
 experiments/judge-manipulation/phase4_shared_memory_windows_sample.ps1 text eol=lf
 tests/test_phase4_shared_memory_gate.py text eol=lf
 experiments/judge-manipulation/shared-memory-reports/phase4cpu-20261018-c/toolchain-probe.c text eol=lf
+tests/test_phase2_checker_v2.py text eol=lf
