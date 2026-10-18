@@ -1,0 +1,66 @@
+{
+  "schema": "kev.phase4.shared-memory.toolchain-supplement-plan.v1",
+  "created_utc": "2026-10-18T18:31:19Z",
+  "applies_to_failed_attempt": "phase4cpu-20261018-c",
+  "incident": {
+    "retained_report": "experiments/judge-manipulation/shared-memory-reports/phase4cpu-20261018-c/report.json",
+    "retained_report_sha256": "80fcee6f348f83a1ecc1f5fb2923c642a4fc83726751d7c581fbf83dff14cb91",
+    "retained_verdict": "experiments/judge-manipulation/shared-memory-reports/phase4cpu-20261018-c/verdict.json",
+    "retained_verdict_sha256": "c23399a1749c4ce3d41a74a55c5677075716b3c0a96b0c50f71c4038e7305b59",
+    "stop_reason": "kernel_correctness_failure",
+    "stage": "kernel_correctness",
+    "error_type": "RuntimeError",
+    "error": "Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.",
+    "training_and_reload_started": false
+  },
+  "runtime_context": {
+    "distribution": "Ubuntu 24.04 (noble), amd64, WSL2",
+    "triton": "3.4.0",
+    "python": "3.13.16 (project's existing custom uv runtime)",
+    "python_header": "/home/tomer/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/include/python3.13/Python.h",
+    "python_header_present_before_install": true,
+    "compiler_discovery": "Triton 3.4 checks CC, then gcc, then clang; all were absent and CC was unset.",
+    "libc_runtime": "2.39-0ubuntu8.9",
+    "libc_development_headers_present_before_install": false
+  },
+  "approved_install_plan": {
+    "toolchain_scope": "local WSL distro packages only; no model, precision, kernel, CUDA driver, WSL configuration, HF cache ownership, or project .venv change",
+    "top_level_packages": [
+      {"name":"gcc","version":"4:13.2.0-7ubuntu1"},
+      {"name":"libc6-dev","version":"2.39-0ubuntu8.9"}
+    ],
+    "install_command": "DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends gcc=4:13.2.0-7ubuntu1 libc6-dev=2.39-0ubuntu8.9",
+    "simulation_command": "apt-get -s --no-install-recommends install gcc=4:13.2.0-7ubuntu1 libc6-dev=2.39-0ubuntu8.9",
+    "simulation_result": {"newly_installed":27,"upgraded":0,"removed":0,"not_upgraded":16},
+    "simulated_package_versions": [
+      {"name":"cpp","version":"4:13.2.0-7ubuntu1"},
+      {"name":"cpp-13","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"cpp-13-x86_64-linux-gnu","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"cpp-x86_64-linux-gnu","version":"4:13.2.0-7ubuntu1"},
+      {"name":"gcc","version":"4:13.2.0-7ubuntu1"},
+      {"name":"gcc-13","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"gcc-13-base","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"gcc-13-x86_64-linux-gnu","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"gcc-x86_64-linux-gnu","version":"4:13.2.0-7ubuntu1"},
+      {"name":"libasan8","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libatomic1","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libc-dev-bin","version":"2.39-0ubuntu8.9"},
+      {"name":"libc6-dev","version":"2.39-0ubuntu8.9"},
+      {"name":"libcc1-0","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libcrypt-dev","version":"1:4.4.36-4build1"},
+      {"name":"libgcc-13-dev","version":"13.3.0-6ubuntu2~24.04.1"},
+      {"name":"libgomp1","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libhwasan0","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libisl23","version":"0.26-3build1.1"},
+      {"name":"libitm1","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"liblsan0","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libmpc3","version":"1.3.1-1build1.1"},
+      {"name":"libquadmath0","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libtsan2","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"libubsan1","version":"14.2.0-4ubuntu2~24.04.1"},
+      {"name":"linux-libc-dev","version":"6.8.0-147.147"},
+      {"name":"rpcsvc-proto","version":"1.4.2-0ubuntu7"}
+    ],
+    "download_sha256_evidence": "pending successful install; package archive hashes will be recorded in toolchain-supplement-002-install.json"
+  }
+}

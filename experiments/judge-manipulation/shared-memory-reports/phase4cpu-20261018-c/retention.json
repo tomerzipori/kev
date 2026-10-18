@@ -1,0 +1,15 @@
+{
+  "recorded_utc": "2026-10-18T18:26:47.059037+00:00",
+  "report": {
+    "report_directory": "/mnt/c/Users/Tomer/.codex/worktrees/phase4-shared-memory/kev/experiments/judge-manipulation/shared-memory-reports/phase4cpu-20261018-c",
+    "report_sha256": "80fcee6f348f83a1ecc1f5fb2923c642a4fc83726751d7c581fbf83dff14cb91",
+    "retained_report_sha256": "80fcee6f348f83a1ecc1f5fb2923c642a4fc83726751d7c581fbf83dff14cb91",
+    "runtime_report_sha256": "80fcee6f348f83a1ecc1f5fb2923c642a4fc83726751d7c581fbf83dff14cb91",
+    "runtime_run": "/mnt/c/Users/Tomer/.codex/worktrees/phase4-shared-memory/kev/runs/judge-manipulation-phase4-shared/phase4cpu-20261018-c",
+    "verdict_sha256": "c23399a1749c4ce3d41a74a55c5677075716b3c0a96b0c50f71c4038e7305b59",
+    "verified": true
+  },
+  "run_id": "phase4cpu-20261018-c",
+  "schema_version": 1,
+  "verdict_status": "failed_incomplete"
+}
