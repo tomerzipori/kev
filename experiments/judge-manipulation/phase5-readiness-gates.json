@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "blocked",
+  "registration": {
+    "path": "experiments/judge-manipulation/phase5-readiness-registration.json",
+    "sha256": "677654c5ebd4c93fb48efe8af4cfb76c94da8e759aaaa57b517fe801af6606de"
+  },
+  "gates": {
+    "model_lock": {
+      "status": "pending",
+      "evidence": []
+    },
+    "preregistered_selection_review": {
+      "status": "pending",
+      "evidence": []
+    },
+    "phase2_pilot": {
+      "status": "pending",
+      "evidence": []
+    },
+    "phase3_frozen_corpus": {
+      "status": "pending",
+      "evidence": []
+    },
+    "amended_phase4_hardware": {
+      "status": "pending",
+      "evidence": []
+    },
+    "runtime_and_interval_validation": {
+      "status": "pending",
+      "evidence": []
+    }
+  }
+}
