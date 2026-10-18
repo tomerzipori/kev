@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "recorded_by": "/root/phase_4_director",
+  "approval_received_from": "/root",
+  "status": "approved_before_gpu_execution",
+  "plan": {"path": "experiments/judge-manipulation/phase4-shared-memory-plan.json", "sha256": "0329f3bc4fc6e9779caf1b32b393729b9f36fc6d28de85bb17e7c1b3bae4b48a"},
+  "implementation_brief": {"path": "experiments/judge-manipulation/phase4-shared-memory-implementation.md", "sha256": "74e95eff2aad7e9a2e44e7baf5f1e8b442415d765f4d15169c7c22bc8dabfcf8"},
+  "reason": "Downloaded causal-conv1d 1.7.0 wheel METADATA declares torch, packaging and ninja. Primary packaging 26.3 and torch 2.8.0 are present, but ninja is absent. Satisfy the declared dependency rather than waive it.",
+  "additional_overlay_wheel": {
+    "name": "ninja",
+    "version": "1.13.0",
+    "requires_python": ">=3.8",
+    "requires_dist": [],
+    "filename": "ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "sha256": "fb46acf6b93b8dd0322adc3a4945452a4e774b75b91293bafcc7b7f8e6517dfa",
+    "url": "https://files.pythonhosted.org/packages/ed/de/0e6edf44d6a04dabd0318a519125ed0415ce437ad5a1ec9b9be03d9048cf/ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+    "metadata_source": "https://pypi.org/pypi/ninja/1.13.0/json"
+  },
+  "installation": "Verify wheel SHA and METADATA, then install only into the same fresh external overlay with --no-deps. Record a CPU ninja --version proof. Do not change the primary .venv, Torch, Triton, Transformers or PEFT.",
+  "unchanged": "All model, precision, context, numerical tolerances, resource limits and GPU coordination requirements of the frozen plan remain binding.",
+  "gpu_results_observed_for_this_benchmark": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "recorded_by": "/root/phase_4_director",
+  "approval_received_from": "/root",
+  "plan": {"path": "experiments/judge-manipulation/phase4-shared-memory-plan.json", "sha256": "0329f3bc4fc6e9779caf1b32b393729b9f36fc6d28de85bb17e7c1b3bae4b48a"},
+  "implementation_brief": {"path": "experiments/judge-manipulation/phase4-shared-memory-implementation.md", "sha256": "74e95eff2aad7e9a2e44e7baf5f1e8b442415d765f4d15169c7c22bc8dabfcf8"},
+  "decision": "Root approved these exact plan and implementation-brief hashes. Preserve their bytes; do not rewrite their status after approval.",
+  "pinned_config_cpu_check": {"key_heads": 16, "value_heads": 32, "key_dim": 128, "value_dim": 128, "convolution_width": 4, "convolution_channels": 8192},
+  "implementation_review_requirements": [
+    "Verify actual shapes against the pinned Qwen config.",
+    "Record observed resource-poll timestamps and gaps rather than claiming ideal 1 Hz sampling.",
+    "Compare the same raw logits, head temperature, eval state and kernel settings for exact reload parity.",
+    "Commit the full source and plan checkpoint before any GPU correctness or training process.",
+    "Obtain root's clean exclusive GPU lease after Phase 2 releases its model."
+  ],
+  "execution_status": "No GPU execution authorized yet; CPU dependency acquisition only."
+}
