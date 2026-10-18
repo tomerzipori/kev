@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "phase": 2,
+  "status": "candidate_rows_frozen_before_checker_outputs",
+  "deterministic_reconstruction_command": "python experiments/judge-manipulation/phase2_pilot.py prepare --parent-tokenizer <directory-containing-pinned-tokenizer.json>",
+  "workstation_wsl_command": "wsl.exe -d Ubuntu-24.04 -- bash -lc 'cd /mnt/c/Users/Tomer/Documents/GitHub/kev && .venv/bin/python experiments/judge-manipulation/phase2_pilot.py prepare --parent-tokenizer /home/tomer/.cache/huggingface-phase4/hub/models--jaredpalmer--kev-4b/snapshots/139fdd94f1b6a6ad80cc15e08fcb99cac885a101'",
+  "candidate_count": 200,
+  "source_counts": {
+    "sourcefree_construction": 160,
+    "oasst1": 40
+  },
+  "reservation_counts": {
+    "train": 64,
+    "calibration": 88,
+    "development": 48
+  },
+  "candidate_jsonl_ignored_path": "runs/judge-manipulation-phase2-pilot/candidates.jsonl",
+  "candidate_jsonl_sha256": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f",
+  "candidate_jsonl_records": 200,
+  "compact_index_path": "experiments/judge-manipulation/pilot-candidate-index-phase-2.jsonl",
+  "compact_index_sha256": "4bc083784ba6a1c72dc3e999d5c710a1569cbe6bf87deca444dd9f9662fc6572",
+  "oasst_selection_lock_path": "experiments/judge-manipulation/oasst-selection-lock-phase-2.json",
+  "oasst_selection_lock_sha256": "8ccf80751ead4a628f35a5e97c9eeee46c32b593289310d7bb884acf57539780",
+  "construction_lock_sha256": "e247737c09c304495cde56194a5f82fc7ebbf51e9610652197903dbbded8cf33",
+  "checker_prompt_lock_sha256": "ec0c7c03afb8938f4466457914df45efa738affb87a52887517ea325ec95b505",
+  "pilot_plan_sha256": "8f870598a6463868ddfd7254b0682027e1d06d02845c6e73c93dd66809316fb0",
+  "source_registry_sha256": "2818e4f68a8adc352d71112b195eb5be7b389b47796ce3c6e63f80d0efb19ec7",
+  "phase4_model_lock_sha256": "0bdce0513f5d85c09154f6a8808ad973bc2848d679d1144c7093e64dc6d8fb19",
+  "parent_tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+  "lineage_components": 43,
+  "synthetic_lineage_components": 3,
+  "oasst_tree_components": 40,
+  "final_evaluation_suite": false
+}

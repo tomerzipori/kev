@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "status": "gpu_computation_passed_report_incomplete",
+  "model": "qwen3-4b-q4km",
+  "generic_completion_requests": 1,
+  "pilot_prompts_used": false,
+  "gpu_layers_offloaded": 37,
+  "gpu_layers_total": 37,
+  "cuda_model_buffer_mib": 2375.91,
+  "cuda_kv_buffer_mib": 1152,
+  "observed_server_context": 8192,
+  "server_pid": 799,
+  "server_log": "runs/judge-manipulation-phase2-runtime/20261018/qwen-recovery-server.log",
+  "server_log_timing": {"prompt_tokens": 32, "generated_tokens": 6, "generation_tokens_per_second": 73.69},
+  "harness_validation_reached": "The harness checked the pinned binary/model/tokenizer hashes, live alias/path/context, schema-parsed JSON equal to {ok:true}, and finish_reason=stop before its subsequent log read failed.",
+  "harness_exit_code": 1,
+  "report_error": "OSError: [Errno 61] No data available while reading the active server log on the Windows-mounted repository",
+  "raw_completion_body_persisted": false,
+  "raw_post_recovery_props_persisted": false,
+  "proof_gap": "The original raw completion body and raw post-recovery props were not saved before the report I/O failure. No replacement response or complete success report is invented.",
+  "server_stop": "Idle server received SIGTERM and exited before Phi loaded. No request was repeated or interrupted."
+}

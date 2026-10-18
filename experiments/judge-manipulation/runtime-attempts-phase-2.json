@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "status": "gpu_recovered_phi_passed_qwen_report_io_gap",
+  "pilot_checker_calls": 0,
+  "attempts": [
+    {
+      "id": "qwen-cpu-fallback",
+      "model": "qwen3-4b-q4km",
+      "log": "runs/judge-manipulation-phase2-runtime/20261018/qwen-server.log",
+      "result": "Generic smoke reached JSON validation and actual alias/path/context checks, then rejected the run because no GPU offload evidence existed.",
+      "harness_exit_code": 1,
+      "cause": "LD_LIBRARY_PATH pointed at the cudart extraction parent instead of the nested release directory; libcudart and libcublas were unresolved for the CUDA backend.",
+      "server_stop": "Idle server PID 807 received SIGTERM and exited. No request was interrupted."
+    },
+    {
+      "id": "qwen-cuda-abort",
+      "model": "qwen3-4b-q4km",
+      "log": "runs/judge-manipulation-phase2-runtime/20261018/qwen-gpu-server.log",
+      "result": "After fixing the nested cudart path, the CUDA-backed model loaded and health returned ok, but the first generic completion disconnected because the server aborted.",
+      "harness_exit_code": 1,
+      "server_terminal_error": "CUDA error: unknown error, ggml_backend_cuda_synchronize, cudaStreamSynchronize(cuda_ctx->stream())",
+      "server_stop": "Server PID 1216 aborted and exited. No checker server remained.",
+      "guest_gpu_status": "WSL nvidia-smi reported GPU access blocked by the operating system.",
+      "host_gpu_status": "Native Windows nvidia-smi worked: RTX 4060 Ti, driver 617.42, 8188 MiB total, 219 MiB used.",
+      "recovery_owner": "Root coordinates WSL GPU bridge recovery and the next GPU job."
+    }
+  ],
+  "phi_smoke": "passed_after_root_wsl_recovery",
+  "readiness": "Historical failures retained. Post-recovery GPU computation succeeded for both models; Phi full harness passed, Qwen final report has an explicit I/O/raw-body gap. Root review/checkpoint precede any full pilot.",
+  "log_sha256": {
+    "runs/judge-manipulation-phase2-runtime/20261018/qwen-server.log": "787b6caeb7d7f0c277480f8e73d18c0f0ddcaa236f246fcc726dd1870df82790",
+    "runs/judge-manipulation-phase2-runtime/20261018/qwen-gpu-server.log": "120eca3693f22c72ebb93672b1b526ac04cb6c75e9258222adcd65762df82337",
+    "runs/judge-manipulation-phase2-runtime/20261018/qwen-recovery-server.log": "c420c9e0952742051e84fa792de245521b028b156f355ff457ccb8d54996367d",
+    "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-server.log": "c3f9bb84865445da34bbde316d2b4a6ce86bb6edd4d2ce8fcf9595630b6ff147",
+    "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-smoke.json": "f9820ff606a0b2c2ad9e4c11f030648ecf308e5bb25dce223e2565a9d6a325d2",
+    "runs/judge-manipulation-phase2-runtime/20261018/root-cuda-recovery.json": "7c2bf01c47d8baa3cacc58da39671eba91a0b87dc9fa83ae1e11428f79d71f36"
+  },
+  "post_recovery": {
+    "recovery_owner": "root",
+    "recovery_proof": "runs/judge-manipulation-phase2-runtime/20261018/root-cuda-recovery.json",
+    "qwen_proof": "experiments/judge-manipulation/qwen-recovery-proof-phase-2.json",
+    "qwen_server_log": "runs/judge-manipulation-phase2-runtime/20261018/qwen-recovery-server.log",
+    "phi_report": "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-smoke.json",
+    "phi_server_log": "runs/judge-manipulation-phase2-runtime/20261018/phi-recovery-server.log",
+    "gpu_released": true,
+    "completed_requests_per_checker": 1
+  }
+}

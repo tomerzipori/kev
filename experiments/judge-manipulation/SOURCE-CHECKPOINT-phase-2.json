@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "recorded_on": "2026-10-18",
+  "status": "cpu_source_checkpoint_gpu_recovered_qwen_report_gap",
+  "phase_2_pass": false,
+  "scope": "Reviewable data-pipeline and runtime source milestone. No final suite freeze, model baseline, training, locked-test read, or full pilot checker pass.",
+  "candidate_proof": {
+    "evidence_boundary": "Retained successful CPU prepare artifact generated on 2026-10-16, exact file hash verified again on 2026-10-18. Supervisor has not rerun full prepare after the final portable-override source repairs because root reserved WSL recovery.",
+    "path": "runs/judge-manipulation-phase2-pilot/candidates.jsonl",
+    "sha256": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f",
+    "records": 200,
+    "sourcefree_records": 160,
+    "oasst_calibration_only_records": 40,
+    "effective_lineage_components": 43,
+    "synthetic_components": 3,
+    "oasst_tree_components": 40,
+    "state_tokens_including_delimiter": {
+      "min": 3,
+      "max": 2022
+    },
+    "final_evaluation_suite": false,
+    "raw_payloads_and_predictions_remain_ignored": true
+  },
+  "source_review": {
+    "verdict": "Narrow source repairs reviewed; actual two-model runtime/pilot gate remains failed or unexecuted.",
+    "contracts": [
+      "Exact boolean/source mappings and frozen noul question; no extra option criteria.",
+      "Portable parent tokenizer override verifies the same six historical pinned files.",
+      "Transitive ancestry and global exact response hashes reject leakage and conflicting copies.",
+      "Strict API/materialization/encoder/loader validation, including agreed OASST semantic records.",
+      "Exact evidence substrings with derived raw offsets; malformed, unsupported and disagreeing checks quarantine.",
+      "Resume and disposition verify candidate/runtime/prompt/model/response hash bindings.",
+      "Live identity requires observed loaded model path and context; full chat preflight reserves output tokens.",
+      "Nonvacuous pilot gate requires actual accepted known positives, known negatives and OASST agreement."
+    ]
+  },
+  "validation": {
+    "reported_by": "Luna pipeline worker, with supervisor source review",
+    "focused_suite": {
+      "passed": 24,
+      "elapsed_seconds": 96.48
+    },
+    "additional_accepted_oasst_loader_regression": {
+      "passed": 1,
+      "deselected": 24,
+      "elapsed_seconds": 97.15
+    },
+    "python_compile": "passed for delivered Python sources",
+    "full_fast_suite": "not_run",
+    "focused_suite_command": "python -m pytest experiments/judge-manipulation/test_phase2_pilot.py -q",
+    "additional_regression_command": "python -m pytest experiments/judge-manipulation/test_phase2_pilot.py -q -k agreed_oasst_label_round_trips_through_real_kev_loader_and_encoder",
+    "note": "The extra loader regression was a separate focused run. A combined 25-test run is not claimed."
+  },
+  "runtime": {
+    "status": "gpu_recovered_phi_passed_qwen_report_io_gap",
+    "attempt_record": "experiments/judge-manipulation/runtime-attempts-phase-2.json",
+    "gpu_released_to_root": true,
+    "remaining": "Root review and source/runtime/selection/index checkpoint, then actual two-model pilot after the training GPU window. Qwen raw completion body is absent from its post-recovery attempt; its proof states the precise gap."
+  },
+  "next_cpu_command": "python experiments/judge-manipulation/phase2_pilot.py prepare --parent-tokenizer <directory-with-the-six-pinned-parent-tokenizer-files>",
+  "next_gpu_command": "Do not start until root completes GPU recovery and explicitly assigns the GPU. Then use the pinned runtime entrypoint and generic smoke helper before any full pilot call.",
+  "statistical_limit": "Three synthetic lineage components are a pipeline proof, not independent performance evidence. Phase 3 must audit effective attack/negative group counts and zero-event confidence-interval feasibility before freeze.",
+  "artifacts_sha256": {
+    "experiments/judge-manipulation/phase2_pilot.py": "382a94d853db63ed5e3f429287e2192c758224a3d30ba238aac269b6aaeef8ae",
+    "experiments/judge-manipulation/phase2_checker.py": "ef4be8ab3e61370d34dc57612aed453da9168d25ae834061afd4eda71b9e0327",
+    "experiments/judge-manipulation/test_phase2_pilot.py": "cc1a2ffcaea47228ca6f44ea13b812b98c7e7d1bebca6925a279014d202b85a3",
+    "experiments/judge-manipulation/setup_checker_runtime_phase2.sh": "ab729bffbcaa5c52b139efa08e8fd927a7a27410a3db151f800a846ef24fba7e",
+    "experiments/judge-manipulation/smoke_checker_runtime_phase2.py": "d4e5502c5d7c251f5cd52d49c1fcead3647e1e2d95098073ade9264da87d64c6",
+    "experiments/judge-manipulation/checker-runtime-lock-phase-2.json": "1a767ebd93ce48ab0dd4e1e0490a01bf76d84f6899e64327cb4460f02f6fe720",
+    "experiments/judge-manipulation/checker-runtime-phase-2.md": "b5cb761cfc2537627cb617875eece64fdc8c916617ddb9fc67c14627959c0fad",
+    "experiments/judge-manipulation/converter-requirements-phase-2.lock.txt": "928d2f586bedbeb86050e350448cead8eb4512c076712d1ba339f007483aacbb",
+    "experiments/judge-manipulation/oasst-selection-lock-phase-2.json": "8ccf80751ead4a628f35a5e97c9eeee46c32b593289310d7bb884acf57539780",
+    "experiments/judge-manipulation/pilot-candidate-index-phase-2.jsonl": "4bc083784ba6a1c72dc3e999d5c710a1569cbe6bf87deca444dd9f9662fc6572",
+    "experiments/judge-manipulation/pilot-candidate-manifest-phase-2.json": "19221a99df08ce95663b8cbaae5c85e394d9e983a72d31ba6cd53a868806e7f4",
+    "experiments/judge-manipulation/runtime-attempts-phase-2.json": "aaaec063fee656b3f9d2a1462cdcdd6523c2b1a5846fdfe118d7f0d9278c2b28",
+    "experiments/judge-manipulation/qwen-recovery-proof-phase-2.json": "3d1272b6607569f4d44423efc9ff79b1c746d5707008abfbde1cf2cff7d0ffd2"
+  }
+}
