@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "purpose": "CPU coverage stress diagnostic only; not a proof of 95% coverage or an approval of the interval method.",
+  "seed": 20261018,
+  "outer_datasets_per_scenario": 150,
+  "bootstrap_replicates_per_dataset": 999,
+  "software": {
+    "python": "3.13.1",
+    "numpy": "2.5.2",
+    "scipy": "1.16.1"
+  },
+  "data_generating_process": {
+    "scores": "group Normal(0, sigma) random intercept plus within-group standard logistic noise",
+    "true_row_fpr": "computed from the logistic-normal marginal tail integral",
+    "threshold_search": "20 thresholds chosen from observed development-score quantiles 0.90 through 0.999; a reduced adaptive grid, not every distinct score",
+    "bootstrap": "resample independent groups jointly with replacement; all rows in each group move together; row-weighted FPR is recomputed",
+    "methods": "pointwise 95th percentile cluster-bootstrap upper limits versus a 95th percentile max-deviation band over the reduced grid",
+    "zero_event": "a threshold with zero observed and zero bootstrap false positives is unsupported, never eligible"
+  },
+  "scenarios": [
+    {
+      "scenario": "iid_equal_200x5",
+      "independent_groups": 200,
+      "cluster_size_rule": "equal5",
+      "rows_mean": 1000.0,
+      "cluster_size_min": 5,
+      "cluster_size_max": 5,
+      "cluster_size_cv_mean": 0.0,
+      "random_intercept_sd": 0.0,
+      "bootstrap": {
+        "replicates": 999,
+        "seed": 20261018
+      },
+      "outer_datasets": 150,
+      "candidate_thresholds_per_dataset": 20,
+      "adaptive_nearest_1pct_pointwise_upper_coverage": 0.96,
+      "adaptive_nearest_1pct_pointwise_coverage_mc_wilson_95": [
+        0.915486535783444,
+        0.9815408393979256
+      ],
+      "max_deviation_simultaneous_grid_coverage": 0.96,
+      "max_deviation_grid_coverage_mc_wilson_95": [
+        0.915486535783444,
+        0.9815408393979256
+      ],
+      "selection": {
+        "pointwise": {
+          "selection_rate": 1.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": 0.0,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 150,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": 0.002036718390930457
+        },
+        "max_deviation": {
+          "selection_rate": 0.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": null,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 0,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": null
+        }
+      }
+    },
+    {
+      "scenario": "correlated_equal_200x5",
+      "independent_groups": 200,
+      "cluster_size_rule": "equal5",
+      "rows_mean": 1000.0,
+      "cluster_size_min": 5,
+      "cluster_size_max": 5,
+      "cluster_size_cv_mean": 0.0,
+      "random_intercept_sd": 1.0,
+      "bootstrap": {
+        "replicates": 999,
+        "seed": 20261019
+      },
+      "outer_datasets": 150,
+      "candidate_thresholds_per_dataset": 20,
+      "adaptive_nearest_1pct_pointwise_upper_coverage": 0.9266666666666666,
+      "adaptive_nearest_1pct_pointwise_coverage_mc_wilson_95": [
+        0.8734642066329596,
+        0.9585611848396149
+      ],
+      "max_deviation_simultaneous_grid_coverage": 0.9333333333333333,
+      "max_deviation_grid_coverage_mc_wilson_95": [
+        0.8816376448839411,
+        0.9633881433303926
+      ],
+      "selection": {
+        "pointwise": {
+          "selection_rate": 1.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": 0.0,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 150,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": 0.001904821518011116
+        },
+        "max_deviation": {
+          "selection_rate": 0.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": null,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 0,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": null
+        }
+      }
+    },
+    {
+      "scenario": "correlated_unequal_cap5_400g",
+      "independent_groups": 400,
+      "cluster_size_rule": "uniform1to5",
+      "rows_mean": 1199.4333333333334,
+      "cluster_size_min": 1,
+      "cluster_size_max": 5,
+      "cluster_size_cv_mean": 0.47069447162598693,
+      "random_intercept_sd": 1.0,
+      "bootstrap": {
+        "replicates": 999,
+        "seed": 20261020
+      },
+      "outer_datasets": 150,
+      "candidate_thresholds_per_dataset": 20,
+      "adaptive_nearest_1pct_pointwise_upper_coverage": 0.9266666666666666,
+      "adaptive_nearest_1pct_pointwise_coverage_mc_wilson_95": [
+        0.8734642066329596,
+        0.9585611848396149
+      ],
+      "max_deviation_simultaneous_grid_coverage": 0.88,
+      "max_deviation_grid_coverage_mc_wilson_95": [
+        0.818291645158672,
+        0.9227309691215898
+      ],
+      "selection": {
+        "pointwise": {
+          "selection_rate": 1.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": 0.0,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 150,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": 0.001988849887892025
+        },
+        "max_deviation": {
+          "selection_rate": 0.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": null,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 0,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": null
+        }
+      }
+    },
+    {
+      "scenario": "correlated_unequal_cap15_200g",
+      "independent_groups": 200,
+      "cluster_size_rule": "zipf_cap15",
+      "rows_mean": 780.6266666666667,
+      "cluster_size_min": 1,
+      "cluster_size_max": 15,
+      "cluster_size_cv_mean": 1.179446996851195,
+      "random_intercept_sd": 1.5,
+      "bootstrap": {
+        "replicates": 999,
+        "seed": 20261021
+      },
+      "outer_datasets": 150,
+      "candidate_thresholds_per_dataset": 20,
+      "adaptive_nearest_1pct_pointwise_upper_coverage": 0.8866666666666667,
+      "adaptive_nearest_1pct_pointwise_coverage_mc_wilson_95": [
+        0.825997250162395,
+        0.928025760859626
+      ],
+      "max_deviation_simultaneous_grid_coverage": 0.8866666666666667,
+      "max_deviation_grid_coverage_mc_wilson_95": [
+        0.825997250162395,
+        0.928025760859626
+      ],
+      "selection": {
+        "pointwise": {
+          "selection_rate": 1.0,
+          "false_selection_rate_unconditional": 0.006666666666666667,
+          "false_selection_rate_conditional_on_selection": 0.006666666666666667,
+          "false_selection_wilson_95": [
+            0.0011778013350174366,
+            0.03679283977481815
+          ],
+          "selection_count": 150,
+          "false_selection_count": 1,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": 0.0021290409674499964
+        },
+        "max_deviation": {
+          "selection_rate": 0.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": null,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 0,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": null
+        }
+      }
+    },
+    {
+      "scenario": "correlated_few_unequal_60g",
+      "independent_groups": 60,
+      "cluster_size_rule": "zipf_cap30",
+      "rows_mean": 307.96,
+      "cluster_size_min": 1,
+      "cluster_size_max": 30,
+      "cluster_size_cv_mean": 1.532225310901044,
+      "random_intercept_sd": 1.5,
+      "bootstrap": {
+        "replicates": 999,
+        "seed": 20261022
+      },
+      "outer_datasets": 150,
+      "candidate_thresholds_per_dataset": 20,
+      "adaptive_nearest_1pct_pointwise_upper_coverage": 0.88,
+      "adaptive_nearest_1pct_pointwise_coverage_mc_wilson_95": [
+        0.818291645158672,
+        0.9227309691215898
+      ],
+      "max_deviation_simultaneous_grid_coverage": 0.8133333333333334,
+      "max_deviation_grid_coverage_mc_wilson_95": [
+        0.7434428016958636,
+        0.8675758451668085
+      ],
+      "selection": {
+        "pointwise": {
+          "selection_rate": 0.5866666666666667,
+          "false_selection_rate_unconditional": 0.06,
+          "false_selection_rate_conditional_on_selection": 0.10227272727272728,
+          "false_selection_wilson_95": [
+            0.03188404420920533,
+            0.11008977083470209
+          ],
+          "selection_count": 88,
+          "false_selection_count": 9,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": 0.004357805053747717
+        },
+        "max_deviation": {
+          "selection_rate": 0.0,
+          "false_selection_rate_unconditional": 0.0,
+          "false_selection_rate_conditional_on_selection": null,
+          "false_selection_wilson_95": [
+            1.734723475976807e-18,
+            0.0249702443680766
+          ],
+          "selection_count": 0,
+          "false_selection_count": 0,
+          "boundary_unsupported_count": 0,
+          "mean_true_fpr_when_selected": null
+        }
+      }
+    }
+  ],
+  "interpretation_limit": "Monte Carlo rates are conditional on these synthetic score and cluster-size models. The stress check does not establish coverage for the real corpus, arbitrary group dependence, the full observed-score threshold grid, or a 10,000-replicate final analysis."
+}
