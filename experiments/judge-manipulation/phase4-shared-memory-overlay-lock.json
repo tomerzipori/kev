@@ -1,0 +1,111 @@
+{
+  "actual_kernel_imports_and_torch_abi": "pending exclusive GPU lease; no FLA or causal-conv import attempted",
+  "gpu_context_or_model_launched": false,
+  "installation": "uv pip install --python <primary_python> --target <overlay_path> --no-deps <the five verified wheel paths>",
+  "ninja_cpu_version_output": "1.13.0.git.kitware.jobserver-pipe-1",
+  "overlay_distributions": {
+    "causal-conv1d": {
+      "metadata_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340/causal_conv1d-1.7.0.dist-info",
+      "requires": [
+        "torch",
+        "packaging",
+        "ninja"
+      ],
+      "version": "1.7.0"
+    },
+    "einops": {
+      "metadata_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340/einops-0.8.1.dist-info",
+      "requires": null,
+      "version": "0.8.1"
+    },
+    "fla-core": {
+      "metadata_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340/fla_core-0.5.2.dist-info",
+      "requires": [
+        "einops",
+        "torch>=2.7.0; extra == \"cuda\"",
+        "triton>=3.3; extra == \"cuda\"",
+        "torch>=2.7.0; extra == \"rocm\"",
+        "torch>=2.7.0; extra == \"xpu\"",
+        "torch==2.7.1; extra == \"npu\"",
+        "torch_npu==2.7.1.post4; extra == \"npu\"",
+        "torchvision==0.22.1; extra == \"npu\"",
+        "triton-ascend==3.2.1; extra == \"npu\"",
+        "torch>=2.7.0; extra == \"cpu\"",
+        "triton>=3.3; extra == \"cpu\""
+      ],
+      "version": "0.5.2"
+    },
+    "flash-linear-attention": {
+      "metadata_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340/flash_linear_attention-0.5.2.dist-info",
+      "requires": [
+        "fla-core==0.5.2",
+        "transformers>=4.45.0",
+        "fla-core[cuda]==0.5.2; extra == \"cuda\"",
+        "fla-core[rocm]==0.5.2; extra == \"rocm\"",
+        "fla-core[xpu]==0.5.2; extra == \"xpu\"",
+        "fla-core[npu]==0.5.2; extra == \"npu\"",
+        "fla-core[cpu]==0.5.2; extra == \"cpu\"",
+        "tilelang>=0.1.9; extra == \"tilelang\"",
+        "causal-conv1d>=1.4.0; extra == \"conv1d\"",
+        "matplotlib; extra == \"benchmark\"",
+        "pandas; extra == \"benchmark\"",
+        "datasets>=3.3.0; extra == \"benchmark\"",
+        "pytest; extra == \"test\"",
+        "pytest-xdist; extra == \"test\""
+      ],
+      "version": "0.5.2"
+    },
+    "ninja": {
+      "metadata_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340/ninja-1.13.0.dist-info",
+      "requires": null,
+      "version": "1.13.0"
+    }
+  },
+  "overlay_path": "/home/tomer/.cache/kev-phase4-shared/overlays/fla052-triton340",
+  "plan_sha256": "0329f3bc4fc6e9779caf1b32b393729b9f36fc6d28de85bb17e7c1b3bae4b48a",
+  "primary_environment_modified": false,
+  "primary_metadata_after_overlay": {
+    "ninja": null,
+    "packaging": "26.3",
+    "peft": "0.21.0",
+    "torch": "2.8.0",
+    "transformers": "5.17.0",
+    "triton": "3.4.0"
+  },
+  "primary_python": "/mnt/c/Users/Tomer/Documents/GitHub/kev/.venv/bin/python",
+  "recorded_on": "2026-10-18",
+  "schema_version": 1,
+  "status": "cpu_overlay_prepared_gpu_abi_and_correctness_pending",
+  "wheels": [
+    {
+      "bytes": 399590,
+      "filename": "flash_linear_attention-0.5.2-py3-none-any.whl",
+      "path": "/home/tomer/.cache/kev-phase4-shared/wheels/flash_linear_attention-0.5.2-py3-none-any.whl",
+      "sha256": "dcf405d81f5426393b59037097aa700d0f4a841465d5028d5aa543f4502f2400"
+    },
+    {
+      "bytes": 819225,
+      "filename": "fla_core-0.5.2-py3-none-any.whl",
+      "path": "/home/tomer/.cache/kev-phase4-shared/wheels/fla_core-0.5.2-py3-none-any.whl",
+      "sha256": "5e830c85bad3d0d34677f98ac7074d08687a3756f0f0499d95ceb96eb6920761"
+    },
+    {
+      "bytes": 64359,
+      "filename": "einops-0.8.1-py3-none-any.whl",
+      "path": "/home/tomer/.cache/kev-phase4-shared/wheels/einops-0.8.1-py3-none-any.whl",
+      "sha256": "919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737"
+    },
+    {
+      "bytes": 196376721,
+      "filename": "causal_conv1d-1.7.0+cu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl",
+      "path": "/home/tomer/.cache/kev-phase4-shared/wheels/causal_conv1d-1.7.0+cu12torch2.8cxx11abiTRUE-cp313-cp313-linux_x86_64.whl",
+      "sha256": "0bc392a4f205a99a8a2ee801d135ab63441f5ad0e270b470ccf8e34b3676954c"
+    },
+    {
+      "bytes": 180716,
+      "filename": "ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "path": "/home/tomer/.cache/kev-phase4-shared/wheels/ninja-1.13.0-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl",
+      "sha256": "fb46acf6b93b8dd0322adc3a4945452a4e774b75b91293bafcc7b7f8e6517dfa"
+    }
+  ]
+}
