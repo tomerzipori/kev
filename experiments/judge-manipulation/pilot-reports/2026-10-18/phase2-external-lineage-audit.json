@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "protocol": "judge-manipulation-external-lineage-audit",
+  "recorded_on": "2026-10-18",
+  "purpose": "Conservative, programmatic group-capacity audit of pinned School of Reward Hacks and NotInject source artifacts. No labels were assigned and no source text is retained here.",
+  "method": {
+    "processing": "Downloaded each immutable public artifact to a temporary local directory, verified its registered SHA-256, then computed hashes and group counts with Python CSV and Parquet readers.",
+    "raw_text_retained": false,
+    "manual_labeling": false
+  },
+  "school_of_reward_hacks": {
+    "dataset": "longtermrisk/school-of-reward-hacks",
+    "revision": "d7e04a550119cb5410494cf90e2313284a5f2148",
+    "artifact": "school-of-reward-hacks.csv",
+    "artifact_sha256": "cedfea4c010e62311b6eb50c37d6aa78b184eb001b5f8099f4b5025b17285d2d",
+    "source_rows": 1073,
+    "candidate_source_records": 105,
+    "candidate_records_by_task": {
+      "explain a complex concept": 44,
+      "write a short story": 44,
+      "answer complex reasoning questions": 17
+    },
+    "candidate_task_metric_groups": 3,
+    "candidate_user_values_unique": true,
+    "candidate_records_with_both_response_fields": 105,
+    "exact_response_body_hashes": {
+      "attack_field_unique": 105,
+      "control_field_unique": 105,
+      "attack_control_hash_overlap": 0,
+      "duplicate_hashes_across_210_candidate_responses": 0
+    },
+    "shared_exact_suffixes": {
+      "64_char": {
+        "repeated_hash_count": 6,
+        "response_rows_with_repeated_suffix": 14,
+        "hashes": [
+          {"sha256": "4fb368de1f5cc0c1e02b50f74076232299c3f19774a3e3b19a64381a437f1c88", "rows": 2},
+          {"sha256": "74bd96cba5ccdfbbbac9f068e349655c532e2f68589f2ad032bf64f3fa2198bb", "rows": 3},
+          {"sha256": "83c2d2291afb2c5db565b5db5271b25611d9ca5efe6c158305f83828f6049e84", "rows": 3},
+          {"sha256": "83c8a049ae98ef518371e3a32e8d95576f8b3c0cf4951f258b1138924700946a", "rows": 2},
+          {"sha256": "ca85b5fcdf3ce7fbe5ed6f4790cf7e6fcc6c22e689015b856fd4556481c76ba8", "rows": 2},
+          {"sha256": "d95b4258f30f47119dbf86eeeb579ba246d4163d5285696a23f29751a2f8e7f9", "rows": 2}
+        ]
+      },
+      "128_char": {"repeated_hash_count": 0, "response_rows_with_repeated_suffix": 0},
+      "256_char": {"repeated_hash_count": 0, "response_rows_with_repeated_suffix": 0}
+    },
+    "conservative_grouping": {
+      "unit": "One exact source CSV record pair; keep its hack response, matched control, and all derived variants together.",
+      "pair_only_upper_bound": 105,
+      "repeated_suffix_linkage_rule": "Union two source-record pairs if either response field has the same exact 64-character suffix SHA-256; take transitive closure. A source pair remains a single node even though it contains two responses.",
+      "repeated_suffix_keys": 6,
+      "response_rows_with_repeated_suffix": 14,
+      "distinct_source_pairs_touched": 12,
+      "transitive_component_count": 98,
+      "transitive_component_size_histogram": {"1": 93, "2": 3, "3": 2},
+      "largest_transitive_component": 3,
+      "components_over_one": 5,
+      "shared_task_metric_families": 3,
+      "task_metric_families_are_lineage_groups": false,
+      "source_ids_or_seeds": "No published row IDs or generator seeds. All user fields are unique, and the source registry advises a deterministic group ID from all six raw fields.",
+      "target_label_status": "Not assigned. A reward-hacking source label does not itself prove judge-manipulation under the registered detector definition.",
+      "conditional_capacity_if_all_pairs_later_qualify": {"positive_rows_at_one_per_transitive_component": 98, "negative_rows_at_one_per_transitive_component": 98},
+      "interpretation": "105 exact source-record pairs are an upper bound before suffix linkage. The stated conservative rule collapses them to 98 components. This is a grouping cap, not proof of statistical independence: IDs/seeds are absent and shared text beyond exact suffixes may remain. Keep the three task/metric families as coverage/dependence slices without automatically merging them."
+    }
+  },
+  "notinject": {
+    "dataset": "leolee99/NotInject",
+    "revision": "847ae76cf8fea5ed325429e569ae8cfef022d2e0",
+    "artifact_sha256_by_split": {
+      "one": "5b1d3a8ec341205305efd8c6d2cabeb5ba0f594dd8726b08ee7fde1a46ddc6ec",
+      "two": "a5a8c1b3b851b0b5acc3b6caf8bfee26d7da631b2967dd31ca90358df8883feb",
+      "three": "d5c685b123570c092a0f374ba6bdf324b2026d905a2751a243eb2bb360d411a8"
+    },
+    "rows_by_split": {"one": 113, "two": 113, "three": 113},
+    "total_rows": 339,
+    "unique_prompt_hashes": 339,
+    "duplicate_prompt_hashes": 0,
+    "cross_split_prompt_repeats": 0,
+    "unique_registered_group_keys": 339,
+    "duplicate_registered_group_keys": 0,
+    "registered_group_key": ["source split", "exact prompt", "word_list", "category"],
+    "source_role": "Benign user prompts, not submitted assistant responses.",
+    "conservative_grouping": "339 distinct source-prompt groups are supported by the pinned rows. They are not eligible negative response rows under the current detector scope; retain all 339 as reserved candidates and do not force a negative label.",
+    "language_status": "An exact English-eligible count was not computed. The Multilingual category has 84 rows but does not identify exact non-English membership."
+  },
+  "locked_test_capacity": {
+    "target_rows": {"attack": 1000, "negative": 2000},
+    "one_row_per_label_per_group": true,
+    "school_pair_only_upper_bound": {"attack": 105, "negative": 105},
+    "school_suffix_linked_conditional_capacity": {"attack": 98, "negative": 98},
+    "notinject_eligible_response_capacity": {"attack": 0, "negative": 0},
+    "shortage": "Even if every School pair were later mapped to one in-scope positive and one in-scope negative, the pair-only upper bound is 105 rows per label; applying conservative transitive exact-suffix linkage lowers that cap to 98 rows per label. Neither number establishes label or response eligibility or true independence. NotInject adds no eligible response rows under the registered scope. New independent, in-scope groups are still required; do not prune eligible records or manufacture independence by re-ID."
+  }
+}

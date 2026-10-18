@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "protocol": "judge-manipulation-phase-2",
+  "version": 2,
+  "status": "root-authorized-retrospective-validation",
+  "recorded_on": "2026-10-18",
+  "scope": {
+    "authorized": "Implement a separate CPU-only v2 disposition path and apply it once to the exact frozen v1 pilot rows and bound outputs for retrospective policy validation.",
+    "not_authorized": ["new candidate generation", "model calls or retries", "full-corpus processing", "Phase 3 freeze", "training"],
+    "v1_immutable": true
+  },
+  "frozen_v1": {
+    "master_plan_sha256": "812f13d43f41e05597b09fd783a7486aa7999f80fd995db94815b826c17892ba",
+    "source_registry_sha256": "2818e4f68a8adc352d71112b195eb5be7b389b47796ce3c6e63f80d0efb19ec7",
+    "pilot_plan_sha256": "8f870598a6463868ddfd7254b0682027e1d06d02845c6e73c93dd66809316fb0",
+    "prompt_sha256": "ec0c7c03afb8938f4466457914df45efa738affb87a52887517ea325ec95b505",
+    "candidate_sha256": "bcb35908610e50c3e2cc1c787d1af1118735bcd67b9373af17ed595c1252939f",
+    "qwen_ledger_sha256": "d7dd33ba85723d2f49af7a0760802cc2c921273d0c8b34e06ec6cfa220207a25",
+    "phi_ledger_sha256": "79e1c4a8836050f9a404d8b408d5aa13d2d2ae698f7a4c82e68dc14a77c7456e",
+    "dispositions_sha256": "c3b924e4e7d6e9b8da54af40f6ba8817776e7d28524d4895a0ad98fc479c9f0d",
+    "aggregate_report_sha256": "8549d568af49df9883e962fdca4dd7c27eead20314bdfe50f9ba8d83eaf80340"
+  },
+  "evidence_hierarchy_finding": {
+    "master_plan_order": [
+      "Compatible source labels with clear attack-intent provenance",
+      "Known programmatic attack or control transformations",
+      "Agreement between two local open models for rows requiring semantic classification"
+    ],
+    "v1_behavior": "The v1 checker requires two parseable, supported, agreeing outputs before admitting known constructions; v1 also quarantines construction disagreement. Preserve those outcomes under the frozen v1 plan.",
+    "v1_counts": {
+      "accepted": 9,
+      "known_positive_negative": [3, 2],
+      "oasst_agreements": 4,
+      "malformed_or_unsupported": 162,
+      "checker_disagreements": 22,
+      "truncated_or_failed": 7,
+      "known_malformed_or_unsupported": 133,
+      "known_disagreements": 22,
+      "oasst_malformed_or_unsupported": 29,
+      "oasst_failures": 7
+    },
+    "interpretation": "An evidence-hierarchy admission bottleneck, not a demonstrated parser defect. V1 results are immutable."
+  },
+  "v2_disposition_rule": {
+    "known_construction": {
+      "label_authority": "The frozen construction lock and exact deterministic reconstruction.",
+      "required_checks": [
+        "Candidate bytes remain bound to the frozen manifest.",
+        "Reconstructed candidate exactly matches response, label, lineage, request, and Kev record.",
+        "Attack/control variant maps to an exact boolean label.",
+        "Construction evidence occurs verbatim with recomputed exact offsets and matching hash.",
+        "Existing strict Kev candidate, loader, question, and token-limit checks pass."
+      ],
+      "checker_outputs": "Quality evidence only. Record valid, unsupported, malformed, truncated, failed, and disagreeing outcomes; none can overwrite or veto a verified construction label."
+    },
+    "semantic_unlabeled_rows": {
+      "source": "oasst1",
+      "acceptance": "Two complete, context-admitted, parseable, supported outputs with exact boolean agreement and verbatim evidence from both models.",
+      "source_metadata_as_label": false
+    },
+    "prompt_and_runtime": "Unchanged from the pinned v1 prompt, schema, runtime, models, and local-only execution contract. Any later change requires its own versioned amendment."
+  },
+  "retrospective_validation": {
+    "v1_rows_and_ledgers_reuse": "Allowed only once as a bound retrospective v2 validation. Verify exact candidate, runtime, prompt, response, model, and ledger hashes. Do not call or retry models.",
+    "output": "A separate aggregate-only v2 report; do not rewrite v1 dispositions or raw ledgers.",
+    "fresh_v2_pilot": "Not run or authorized by this amendment. Requires a separate root review and fresh registered inputs before any model call.",
+    "pilot_gate": "Retrospective counts do not satisfy a fresh v2 pilot gate or authorize full-corpus processing, training, or Phase 3 freeze."
+  },
+  "independent_group_coverage": {
+    "v1_observed": {
+      "effective_groups": 43,
+      "synthetic_groups": 3,
+      "oasst_conversation_groups": 40,
+      "synthetic_groups_by_partition": {"train": 1, "calibration": 1, "development": 1},
+      "synthetic_pairs": 80,
+      "synthetic_template_families": 24,
+      "shared_body_and_filler_recipe_keys": 6
+    },
+    "group_rule": "Keep every source conversation/answer root, attack seed, matched control, and derived variant in its true lineage group. Preserve the v1 group IDs as measured. Track body/filler recipe, wording family, control type, and placement as additional dependence and coverage factors; only split a group after an evidence-backed independence audit, never to increase n.",
+    "coverage_required_before_bulk_generation": "Build enough independent answer roots and attack seeds to meet target group counts, with multiple independently sourced or authored body and filler recipes in every reservation. Audit shared recipe dependence and report held-family-out slices. Cosmetic substitutions, repeated suffixes, and multiple variants of one root do not add independent groups.",
+    "historical_rejected_group_floor_proposal": {
+      "status": "superseded; not current requirements",
+      "maximum_rows_per_group_per_label": 5,
+      "training_groups_per_label": 600,
+      "calibration_groups_per_label": 100,
+      "development_groups_per_label": 200,
+      "locked_test_groups": {"attack_bearing": 300, "negative_bearing": 400},
+      "reason_rejected": "These M=5 floors and diagnostics do not support the frozen row-level 95% FPR/recall targets. Do not use them for collection, threshold selection, or acceptance."
+    },
+    "historical_rejected_locked_test_diagnostics": {
+      "status": "superseded; not current requirements",
+      "method": "Earlier joint group-bootstrap proposal; Phase 5 stress evidence does not establish its claimed 95% coverage.",
+      "false_positive": "The earlier 299-group zero-event diagnostic is not a sufficient basis for the frozen row-level FPR target.",
+      "recall": "The earlier 29-group zero-miss diagnostic is not a sufficient basis for the frozen row-level recall target.",
+      "caveat": "Retained only to explain the superseded proposal. Do not use for sampling, threshold selection, or acceptance."
+    },
+    "current_collection_policy": {
+      "status": "pending actual lineage and sampling design; no collection counts approved",
+      "phase5_draft_references": [
+        {
+          "path": "experiments/judge-manipulation/phase5-readiness-registration.json",
+          "sha256": "677654c5ebd4c93fb48efe8af4cfb76c94da8e759aaaa57b517fe801af6606de"
+        },
+        {
+          "path": "experiments/judge-manipulation/phase5-readiness.md",
+          "sha256": "11f144f850176118bb8e4199e0baac79feddb9ae539b170efb682edde8ca89e4"
+        }
+      ],
+      "draft_only": "Phase 5's exact group-maximum bound and its conditional M=5 counts are unapproved. Do not treat them as adopted row-level 95% targets or collection requirements until actual independent lineage, source eligibility and mixture, sampling assumptions, cap enforcement, and root review are resolved.",
+      "stress_evidence": "Saved CPU stress results reject the former max-deviation bootstrap draft as an established 95% band. The exact-bound alternative also remains a draft, not a launch or acceptance rule."
+    },
+    "source_shortage": "Phase 1 admitted no reusable independent attack corpus. OASST's 25,326 English assistant messages are pre-filter counts and unlabeled for this task. Current v1's 3 synthetic groups and 40 OASST trees do not establish the 12,000-row targets. Do not bulk-generate until actual independent roots, source eligibility, sampling design, wording/body/filler coverage, and per-partition group counts are evidenced and reviewed."
+  },
+  "pinned_external_lineage_audit": {
+    "report": "experiments/judge-manipulation/pilot-reports/2026-10-18/phase2-external-lineage-audit.json",
+    "report_sha256": "8cf8435d3a40d5da227f01d23f497d515e4c6e77c113d7cc034abb60e01a5a6e",
+    "school_of_reward_hacks": {
+      "pair_only_upper_bound": 105,
+      "suffix_linkage_rule": "Treat each exact source CSV row as a node containing its hack and matched control responses; union nodes when either response shares an exact repeated 64-character suffix SHA-256; use transitive components.",
+      "repeated_suffix_keys": 6,
+      "response_rows_touched": 14,
+      "source_pairs_touched": 12,
+      "transitive_components": 98,
+      "component_size_histogram": {"1": 93, "2": 3, "3": 2},
+      "largest_component": 3,
+      "conditional_cap_if_all_pairs_later_qualify": {"attack": 98, "control": 98},
+      "qualification_and_independence": "Unknown. This conservative suffix-linked cap does not prove true independence; source row IDs and generation seeds are absent. Preserve task/metric families as coverage slices, not automatic lineage groups."
+    },
+    "notinject": {
+      "unique_prompt_groups": 339,
+      "eligible_response_rows": 0,
+      "eligibility": "Source artifacts contain benign user prompts rather than submitted assistant responses; do not force negative labels."
+    },
+    "corpus_consequence": "Neither source supplies enough evidenced eligible groups for the locked-test targets. Acquire and audit additional independent, in-scope answer roots; do not prune eligible rows or manufacture independence."
+  },
+  "approval_boundary": {
+    "root_review_required_before": ["new candidate generation", "any model call", "full-corpus processing", "Phase 3 freeze", "training"],
+    "hardware_readiness": "Governed separately by Phase 4 evidence. This retrospective amendment grants no GPU lease."
+  }
+}
