@@ -2,3 +2,5 @@
 *.json text eol=lf
 *.jsonl text eol=lf
 MASTER-PLAN.md -text whitespace=cr-at-eol
+experiments/judge-manipulation/phase4_shared_memory_windows_sample.ps1 text eol=lf
+tests/test_phase4_shared_memory_gate.py text eol=lf
