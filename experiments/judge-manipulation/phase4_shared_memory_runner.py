@@ -503,6 +503,7 @@ class Runner:
 
     def _environment(self):
         env = os.environ.copy()
+        env.update(self.setup["huggingface_cache"]["environment"])
         prior = env.get("PYTHONPATH", "")
         paths = [str(self.overlay), str(self.repo), str(self.experiments)]
         if prior:
@@ -739,7 +740,7 @@ class Runner:
             "stages": self.stage_results,
             "fixture": {"sha256": fixture["fixture_sha256"], "path": fixture["fixture_path"],
                         "record_count": fixture["record_count"], "unique_source_records": fixture["unique_source_records"],
-                        "state_tokens_including_state_delimiter": fixture["state_tokens_including_delimiter"],
+                        "state_tokens_including_state_delimiter": fixture["state_tokens_including_state_delimiter"],
                         "full_encoded_row_tokens": fixture["full_encoded_row_tokens"],
                         "branch_tokens": fixture["branch_tokens"], "question_id": fixture["question_id"],
                         "question_instructions": fixture["question_instructions"]},

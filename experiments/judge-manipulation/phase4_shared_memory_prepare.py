@@ -56,6 +56,87 @@ def sha256(path):
     return digest.hexdigest()
 
 
+def verify_local_model_cache(model_lock):
+    base = model_lock["base"]
+    config_path = Path(base["config_and_tokenizer_files"]["config.json"]["local_path"])
+    cache_home = config_path.parents[4].resolve()
+    expected_home = (Path.home() / ".cache/huggingface-phase4").resolve()
+    if cache_home != expected_home:
+        raise RuntimeError(f"locked model assets are outside the registered Phase 4 cache: {cache_home}")
+    hub_cache = cache_home / "hub"
+    repo_cache = hub_cache / f"models--{base['repo'].replace('/', '--')}" / "snapshots" / base["revision"]
+    hub_root = hub_cache.resolve(strict=True)
+    verified = []
+
+    def verify(path, spec, label):
+        path = Path(path)
+        resolved = path.resolve(strict=True)
+        if not resolved.is_file():
+            raise RuntimeError(f"locked model asset is not a file: {label} ({path})")
+        try:
+            resolved.relative_to(hub_root)
+        except ValueError as error:
+            raise RuntimeError(f"locked model asset resolves outside the Phase 4 Hub cache: {label}") from error
+        size = resolved.stat().st_size
+        if size != spec["size"]:
+            raise RuntimeError(f"locked model asset size mismatch for {label}: {size} != {spec['size']}")
+        actual_sha = sha256(resolved)
+        expected_sha = spec.get("sha256") or spec.get("lfs_sha256")
+        if expected_sha and actual_sha != expected_sha:
+            raise RuntimeError(f"locked model asset SHA-256 mismatch for {label}: {actual_sha} != {expected_sha}")
+        verified.append({"name": label, "path": str(path), "resolved_path": str(resolved),
+                         "size_bytes": size, "sha256": actual_sha, "expected_sha256": expected_sha})
+        return path
+
+    for name, spec in base["config_and_tokenizer_files"].items():
+        path = Path(spec["local_path"])
+        if path != repo_cache / name:
+            raise RuntimeError(f"locked base asset path does not match its pinned revision: {name}")
+        verify(path, spec, f"base/{name}")
+
+    weight_files = base["weight_file_metadata"]
+    for name, spec in weight_files.items():
+        verify(repo_cache / name, spec, f"base/{name}")
+    index_path = repo_cache / "model.safetensors.index.json"
+    index = read_json(index_path)
+    expected_shards = set(weight_files) - {"model.safetensors.index.json"}
+    actual_shards = set(index.get("weight_map", {}).values())
+    if actual_shards != expected_shards:
+        raise RuntimeError(f"base weight index shard set differs from the model lock: {sorted(actual_shards)}")
+
+    parent = model_lock["parent"]
+    for name, spec in parent["files"].items():
+        verify(Path(spec["local_path"]), spec, f"parent/{name}")
+
+    environment = {
+        "JUDGE_MANIPULATION_PHASE4_HF_HOME": str(cache_home),
+        "HF_HOME": str(cache_home),
+        "HF_HUB_CACHE": str(hub_cache),
+        "HUGGINGFACE_HUB_CACHE": str(hub_cache),
+        "HF_HUB_OFFLINE": "1",
+        "TRANSFORMERS_OFFLINE": "1",
+    }
+    return {"home": str(cache_home), "hub_cache": str(hub_cache), "environment": environment,
+            "base_repo": base["repo"], "base_revision": base["revision"],
+            "parent_repo": parent["repo"], "parent_revision": parent["resolved_commit"],
+            "verified_assets": verified}
+
+
+def verify_windows_sampler_contract(experiment_dir):
+    script = experiment_dir / "phase4_shared_memory_windows_sample.ps1"
+    source = script.read_text(encoding="utf-8")
+    fields = ("status", "observed_utc", "error", "windows_available_physical_bytes",
+              "windows_adapter_shared_bytes", "windows_adapter_dedicated_bytes",
+              "windows_adapter_counters", "windows_gpu_process_counters")
+    missing = [name for name in fields
+               if not re.search(rf"(?m)^\s*{re.escape(name)}\s*=", source)]
+    if missing or "status = 'sampled'" not in source or "status = 'failed'" not in source:
+        raise RuntimeError(f"Windows sampler output contract is incomplete: {missing}")
+    return {"status": "static_shape_verified", "path": str(script), "sha256": sha256(script),
+            "fields": list(fields), "sample_statuses": ["sampled", "failed"],
+            "executed_during_preflight": False}
+
+
 def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
@@ -166,10 +247,8 @@ def _source_hashes(repo):
     return {name: sha256(repo / name) for name in SOURCE_FILES if (repo / name).is_file()}
 
 
-def create_fixture(repo, fixture_dir, lock):
-    os.environ["HF_HUB_OFFLINE"] = "1"
-    os.environ["JUDGE_MANIPULATION_PHASE4_HF_HOME"] = os.environ.get(
-        "JUDGE_MANIPULATION_PHASE4_HF_HOME", str(Path.home() / ".cache/huggingface-phase4"))
+def create_fixture(repo, fixture_dir, lock, hf_cache):
+    os.environ.update(hf_cache["environment"])
     sys.path.insert(0, str(repo))
     experiment_dir = repo / "experiments/judge-manipulation"
     spec = importlib.util.spec_from_file_location("phase4_original_smoke", experiment_dir / "run_phase4_smoke.py")
@@ -178,6 +257,19 @@ def create_fixture(repo, fixture_dir, lock):
     info = module.build_fixture(lock, fixture_dir, count=32)
     if info["fixture_sha256"] != FIXTURE_SHA256:
         raise RuntimeError(f"recreated fixture SHA-256 differs from the approved plan: {info['fixture_sha256']}")
+    required = {"fixture_path", "fixture_sha256", "record_count", "unique_source_records",
+                "state_tokens_including_state_delimiter", "full_encoded_row_tokens", "branch_tokens",
+                "question_id", "question_instructions"}
+    missing = sorted(required - set(info))
+    if missing:
+        raise RuntimeError(f"fixture serialization is missing required report fields: {missing}")
+    expected = {"record_count": 32, "state_tokens_including_state_delimiter": 2048,
+                "full_encoded_row_tokens": 2099, "question_id": "judge_manipulation"}
+    for name, value in expected.items():
+        if info[name] != value:
+            raise RuntimeError(f"fixture report field {name} differs from the registered shape: {info[name]!r}")
+    if sha256(info["fixture_path"]) != FIXTURE_SHA256:
+        raise RuntimeError("fixture file SHA-256 differs from its registered hash")
     return info
 
 
@@ -211,6 +303,9 @@ def main():
     model_lock = read_json(model_lock_path)
     if model_lock.get("status") != "locked":
         raise RuntimeError("Phase 4 model lock is not locked")
+    hf_cache = verify_local_model_cache(model_lock)
+    os.environ.update(hf_cache["environment"])
+    sampler_contract = verify_windows_sampler_contract(experiment_dir)
     historical = _historical_hashes(repo)
     freeze_expected = {
         "experiments/judge-manipulation/feasibility-gate-phase-4.json": plan["historical_failed_gate"]["sha256"],
@@ -228,7 +323,7 @@ def main():
         missing = sorted(set(SOURCE_FILES) - set(source_hashes))
         raise RuntimeError(f"not all benchmark source files exist yet: {missing}")
 
-    fixture = create_fixture(repo, fixture_dir, model_lock)
+    fixture = create_fixture(repo, fixture_dir, model_lock, hf_cache)
     import torch
     if torch.cuda.is_initialized():
         raise RuntimeError("fixture preparation unexpectedly initialized CUDA")
@@ -244,6 +339,8 @@ def main():
         "primary_environment_before": primary_before,
         "primary_dependency_files_before": dependency_files_before,
         "overlay": overlay,
+        "huggingface_cache": hf_cache,
+        "windows_sampler_contract": sampler_contract,
         "fixture": fixture,
         "historical_files_before": historical,
         "source_hashes_before": source_hashes,
